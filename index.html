@@ -8,6 +8,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <!--<link rel="stylesheet" href="styles/debug.css">-->
+    <link rel="stylesheet" href="styles/helpers.css">
     <style>
         .center {
             display: flex;
@@ -20,6 +21,12 @@
             color: white;
         }
 
+        .hero-foot {
+            background-color: dimgrey;
+            color: white;
+            font-size: smaller;
+        }
+
     </style>
 </head>
 <body>
@@ -30,12 +37,30 @@
             <div class="container">
                 <figure class="image center">
                     <img src="img/dogicon.png" style="max-width: 120px;">
-                    <p class="is-size-3">#Splootstegram </p>
+                    <p class="is-size-3 has-text-weight-semibold">#Splootstegram </p>
                 </figure>
             </div>
         </div>
     </section>
 
+    <!-- Toolbar-->
+    <section class="hero">
+        <div class="hero-head">
+            <div class="columns is-mobile is-marginless heading has-text-weight-bold">
+                <div class="column left">
+                    <p class="navbar-item has-text-white"> Home</p>
+                    <p class="navbar-item has-text-white"> Gallery</p>
+                </div>
+                <div class="column center">
+                    <p class="navbar-item has-text-white">LOGO</p>
+                </div>
+                <div class="column right">
+                    <p class="navbar-item has-text-white">Log in</p>
+                    <p class="navbar-item has-text-white">Sign up</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <!--.section-->
     <section class="section has-background-light">
         <!--Every container is a row of photos-->
@@ -97,6 +122,7 @@
                 </div>
             </div>
         </div>
+        <!--Next row of photos-->
         <div class="container">
             <div class="columns is-variable is-1">
                 <div class="column">
@@ -151,6 +177,20 @@
                                 </div>
                             </div>
                         </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- .hero foot-->
+    <section class="hero-foot has-background-grey">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <p class="navbar-item has-text-white has-text-weight-light has-text-centered">Made for the bestest doggos 💚</p>
+                        <p class="navbar-item has-text-white has-text-weight-light has-text-centered">©2018 - HRossouw</p>
                     </div>
                 </div>
             </div>
