@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Intro</title>
+    <title>Register</title>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <!--<link rel="stylesheet" href="styles/debug.css">-->
+<!--    <link rel="stylesheet" href="styles/debug.css">-->
     <link rel="stylesheet" href="styles/helpers.css">
     <style>
         .center {
@@ -65,6 +65,48 @@
     <!--.section-->
     <section class="section has-background-light">
         <!--Every container is a row of photos-->
+
+        <div class="columns">
+            <div class="column is-size-2 center-column">
+                Create an Account
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <p align="center">Username</p>
+            </div>
+            <div class="column center-column is-four-fifths">
+                <input type="text" name="c_name" size="50" required/>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <p align="center">User Email:</p>
+            </div>
+            <div class="column center-column is-four-fifths">
+                <input type="text" name="c_email" size="50" required/>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <p align="center">User Password:</p>
+            </div>
+            <div class="column center-column is-four-fifths">
+                <input type="password" name="c_pass" size="50" required/>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <p align="center">User Image:</p>
+            </div>
+            <div class="column center-column is-four-fifths">
+                <input type="file" name="c_image"/>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-size-2 center-column">
+                <input type="submit" name="register" value="Create Account" />
+            </div>
         </div>
 
         <form action="customer_register.php" method="post" enctype="multipart/form-data">
