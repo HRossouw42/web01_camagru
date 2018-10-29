@@ -71,35 +71,48 @@
                 Create an Account
             </div>
         </div>
+
         <div class="columns">
-            <div class="column">
-                <p align="center">Username</p>
+            <div class="column is-one-quarter">
+                <!-- ... -->
             </div>
-            <div class="column center-column is-four-fifths">
+            <div class="column">
+                <p align="center">Username:</p>
+            </div>
+            <div class="column center-column">
                 <input type="text" name="c_name" size="50" required/>
             </div>
         </div>
         <div class="columns">
+            <div class="column is-one-quarter">
+                <!-- ... -->
+            </div>
             <div class="column">
                 <p align="center">User Email:</p>
             </div>
-            <div class="column center-column is-four-fifths">
+            <div class="column center-column">
                 <input type="text" name="c_email" size="50" required/>
             </div>
         </div>
         <div class="columns">
+            <div class="column is-one-quarter">
+                <!-- ... -->
+            </div>
             <div class="column">
                 <p align="center">User Password:</p>
             </div>
-            <div class="column center-column is-four-fifths">
+            <div class="column center-column">
                 <input type="password" name="c_pass" size="50" required/>
             </div>
         </div>
         <div class="columns">
+            <div class="column is-one-quarter">
+                <!-- ... -->
+            </div>
             <div class="column">
                 <p align="center">User Image:</p>
             </div>
-            <div class="column center-column is-four-fifths">
+            <div class="column center-column">
                 <input type="file" name="c_image"/>
             </div>
         </div>
@@ -109,7 +122,8 @@
             </div>
         </div>
 
-        <form action="customer_register.php" method="post" enctype="multipart/form-data">
+        <?php /* JUST COMMENTED TO REMOVE TEMP!
+            <form action="customer_register.php" method="post" enctype="multipart/form-data">
 
             <table align="center" width="750">
 
@@ -184,7 +198,7 @@
 
         </form>
 
-        </div>
+        </div> */ ?>
     </section>
 
     <!-- .hero foot-->
