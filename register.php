@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+    include('config.php');
+    include('db.php');
+?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -55,8 +59,8 @@
                     <p class="navbar-item has-text-white">LOGO</p>
                 </div>
                 <div class="column right">
-                    <p class="navbar-item has-text-white">Log in</p>
-                    <p class="navbar-item has-text-white">Sign up</p>
+                    <a href="index.html" class="navbar-item has-text-white">Login</a>
+                    <a href="register.php" class="navbar-item has-text-white">Sign up</a>
                 </div>
             </div>
         </div>
@@ -74,7 +78,7 @@
 
         <div class="columns">
             <div class="column is-one-quarter">
-                <!-- ... -->
+                <!-- blank -->
             </div>
             <div class="column">
                 <p align="center">Username:</p>
@@ -85,7 +89,7 @@
         </div>
         <div class="columns">
             <div class="column is-one-quarter">
-                <!-- ... -->
+                <!-- blank -->
             </div>
             <div class="column">
                 <p align="center">User Email:</p>
@@ -96,7 +100,7 @@
         </div>
         <div class="columns">
             <div class="column is-one-quarter">
-                <!-- ... -->
+                <!-- blank -->
             </div>
             <div class="column">
                 <p align="center">User Password:</p>
@@ -107,7 +111,7 @@
         </div>
         <div class="columns">
             <div class="column is-one-quarter">
-                <!-- ... -->
+                <!-- blank -->
             </div>
             <div class="column">
                 <p align="center">User Image:</p>
@@ -123,7 +127,7 @@
         </div>
 
         <?php /* JUST COMMENTED TO REMOVE TEMP!
-            <form action="customer_register.php" method="post" enctype="multipart/form-data">
+            <form action="register.php" method="post" enctype="multipart/form-data">
 
             <table align="center" width="750">
 
