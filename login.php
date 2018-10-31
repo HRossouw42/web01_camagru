@@ -72,17 +72,7 @@
 
         <div class="columns">
             <div class="column is-size-2 center-column">
-                Create an Account
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label">Name</label>
-            <div class="control has-icons-left">
-                <input class="input" type="text" placeholder="e.g Alex Smith">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                </span>
+                Login
             </div>
         </div>
 
@@ -106,18 +96,8 @@
             </div>
         </div>
 
-        <div class="field">
-            <label class="label">Confirm Password</label>
-            <div class="control has-icons-left">
-                <input class="input" type="password" placeholder="battery horse staple">
-                <span class="icon is-small is-left">
-                <i class="fas fa-password"></i>
-                </span>
-            </div>
-        </div>
-
         <div class="control">
-            <button class="button is-primary">Submit</button>
+            <button class="button is-primary">Login</button>
         </div>
 
         <?php /* JUST COMMENTED TO REMOVE TEMP!
