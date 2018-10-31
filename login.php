@@ -96,10 +96,14 @@
             </div>
         </div>
 
+        <div class="field is-grouped">
         <div class="control">
             <button class="button is-primary">Login</button>
         </div>
-
+            <div class="control">
+                <button class="button">Cancel</button>
+            </div>
+        </div>
         <?php /* JUST COMMENTED TO REMOVE TEMP!
             <form action="register.php" method="post" enctype="multipart/form-data">
 
