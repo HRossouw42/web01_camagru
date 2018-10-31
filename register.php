@@ -116,8 +116,13 @@
             </div>
         </div>
 
-        <div class="control">
-            <button class="button is-primary">Submit</button>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary">Register</button>
+            </div>
+            <div class="control">
+                <button class="button">Cancel</button>
+            </div>
         </div>
 
         <?php /* JUST COMMENTED TO REMOVE TEMP!
