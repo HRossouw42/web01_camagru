@@ -9,6 +9,7 @@ if(isset($_POST['register'])){
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['password'] = $_POST['password'];
     $_SESSION['confirm_password'] = $_POST['confirm_password'];
+
 }
 ?>
 
@@ -77,20 +78,20 @@ if(isset($_POST['register'])){
         </div>
     </section>
     
-    <!--.section-->
+    <!--Middle-->
     <section class="section has-background-light">
-        <!--Every container is a row of photos-->
 
         <div class="columns">
             <div class="column is-size-2 center-column">
                 Create an Account
             </div>
         </div>
-        <form>
+    <!--Form-->
+        <form action="register.php" method="post" enctype="multipart/form-data">
         <div class="field">
             <label class="label">Name</label>
             <div class="control has-icons-left">
-                <input class="input" type="text" name="name" placeholder="e.g Alex Smith" value="<?php echo $_SESSION['name'];?>" required>
+                <input class="input" type="text" name="name" placeholder="e.g Alex Smith" value="<?php echo @$_SESSION['name'];?>" required>
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
@@ -100,7 +101,7 @@ if(isset($_POST['register'])){
         <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left">
-                <input class="input" type="email" name="email" placeholder="e.g. alexsmith@gmail.com" value="<?php echo $_SESSION['email'];?>" required>
+                <input class="input" type="email" name="email" placeholder="e.g. alexsmith@gmail.com" value="<?php echo @$_SESSION['email'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
                 </span>
@@ -110,7 +111,7 @@ if(isset($_POST['register'])){
         <div class="field">
             <label class="label">Password</label>
             <div class="control has-icons-left">
-                <input class="input" type="password" name="password" placeholder="battery horse staple" value="<?php echo $_SESSION['password'];?>" required>
+                <input class="input" type="text" name="password" placeholder="battery horse staple" value="<?php echo @$_SESSION['password'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-password"></i>
                 </span>
@@ -120,7 +121,7 @@ if(isset($_POST['register'])){
         <div class="field">
             <label class="label">Confirm Password</label>
             <div class="control has-icons-left">
-                <input class="input" type="password" name="confirm_password" placeholder="battery horse staple" value="<?php echo $_SESSION['confirm_password'];?>" required>
+                <input class="input" type="text" name="confirm_password" placeholder="battery horse staple" value="<?php echo @$_SESSION['confirm_password'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-password"></i>
                 </span>
