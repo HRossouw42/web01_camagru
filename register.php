@@ -1,8 +1,18 @@
-<!DOCTYPE html>
 <?php
-    include('config.php');
-    include('db.php');
+session_start();
+
+include('config.php');
+include('db.php');
+
+if(isset($_POST['register'])){
+    $_SESSION['name'] = $_POST['name'];
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['password'] = $_POST['password'];
+    $_SESSION['confirm_password'] = $_POST['confirm_password'];
+}
 ?>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -59,6 +69,7 @@
                     <p class="navbar-item has-text-white">LOGO</p>
                 </div>
                 <div class="column right">
+                    <a href="myaccount.php" class="navbar-item has-text-white">My Account</a>
                     <a href="login.php" class="navbar-item has-text-white">Login</a>
                     <a href="register.php" class="navbar-item has-text-white">Sign up</a>
                 </div>
@@ -75,11 +86,11 @@
                 Create an Account
             </div>
         </div>
-
+        <form>
         <div class="field">
             <label class="label">Name</label>
             <div class="control has-icons-left">
-                <input class="input" type="text" placeholder="e.g Alex Smith">
+                <input class="input" type="text" name="name" placeholder="e.g Alex Smith" value="<?php echo $_SESSION['name'];?>" required>
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
@@ -89,7 +100,7 @@
         <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left">
-                <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+                <input class="input" type="email" name="email" placeholder="e.g. alexsmith@gmail.com" value="<?php echo $_SESSION['email'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
                 </span>
@@ -99,7 +110,7 @@
         <div class="field">
             <label class="label">Password</label>
             <div class="control has-icons-left">
-                <input class="input" type="password" placeholder="battery horse staple">
+                <input class="input" type="password" name="password" placeholder="battery horse staple" value="<?php echo $_SESSION['password'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-password"></i>
                 </span>
@@ -109,7 +120,7 @@
         <div class="field">
             <label class="label">Confirm Password</label>
             <div class="control has-icons-left">
-                <input class="input" type="password" placeholder="battery horse staple">
+                <input class="input" type="password" name="confirm_password" placeholder="battery horse staple" value="<?php echo $_SESSION['confirm_password'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-password"></i>
                 </span>
@@ -121,10 +132,10 @@
                 <button class="button is-primary">Register</button>
             </div>
             <div class="control">
-                <button class="button">Cancel</button>
+                <a class="button" href="index.html">Cancel</a>
             </div>
         </div>
-
+        </form>
         <?php /* JUST COMMENTED TO REMOVE TEMP!
             <form action="register.php" method="post" enctype="multipart/form-data">
 

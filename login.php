@@ -59,6 +59,7 @@
                     <p class="navbar-item has-text-white">LOGO</p>
                 </div>
                 <div class="column right">
+                    <a href="myaccount.php" class="navbar-item has-text-white">My Account</a>
                     <a href="login.php" class="navbar-item has-text-white">Login</a>
                     <a href="register.php" class="navbar-item has-text-white">Sign up</a>
                 </div>
@@ -75,11 +76,11 @@
                 Login
             </div>
         </div>
-
+        <form>
         <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left">
-                <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+                <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
                 </span>
@@ -89,7 +90,7 @@
         <div class="field">
             <label class="label">Password</label>
             <div class="control has-icons-left">
-                <input class="input" type="password" placeholder="battery horse staple">
+                <input class="input" type="password" placeholder="battery horse staple" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-password"></i>
                 </span>
@@ -100,7 +101,16 @@
         <div class="control">
             <button class="button is-primary">Login</button>
         </div>
+        <div class="control">
+            <a class="button is-info" href="forgot_password.php">Forgot Password?</a>
         </div>
+
+        </div>
+        <label class="checkbox">
+            <input type="checkbox">
+            Remember me
+        </label>
+        </form>
         <?php /* JUST COMMENTED TO REMOVE TEMP!
             <form action="register.php" method="post" enctype="multipart/form-data">
 

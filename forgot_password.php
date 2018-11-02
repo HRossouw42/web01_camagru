@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('config.php');
 include('db.php');
 ?>
@@ -9,7 +8,7 @@ include('db.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Account</title>
+    <title>Forgot Password</title>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
@@ -62,7 +61,7 @@ include('db.php');
             </div>
             <div class="column right">
                 <a href="myaccount.php" class="navbar-item has-text-white">My Account</a>
-                <a href="logout.php" class="navbar-item has-text-white">Logout</a>
+                <a href="login.php" class="navbar-item has-text-white">Login</a>
                 <a href="register.php" class="navbar-item has-text-white">Sign up</a>
             </div>
         </div>
@@ -75,19 +74,30 @@ include('db.php');
 
     <div class="columns">
         <div class="column is-size-2 center-column">
-            <p>Hello, <?php $_SESSION['user_name']; ?>!</p>
+            Let's get you back in there!
+        </div>
+    </div>
+    <form>
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left">
+            <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" required>
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+                </span>
         </div>
     </div>
 
+
     <div class="field is-grouped">
         <div class="control">
-            <button class="button is-primary">Submit</button>
+            <button class="button is-primary">Send Password</button>
         </div>
         <div class="control">
             <a class="button" href="index.html">Cancel</a>
         </div>
     </div>
-
+    </form>
 </section>
 
 <!-- .hero foot-->
