@@ -52,7 +52,7 @@
         <div class="hero-head">
             <div class="columns is-mobile is-marginless heading has-text-weight-bold">
                 <div class="column left">
-                    <a href="index.html" class="navbar-item has-text-white"> Home</a>
+                    <a href="index.php" class="navbar-item has-text-white"> Home</a>
                     <p class="navbar-item has-text-white"> Gallery</p>
                 </div>
                 <div class="column center">

@@ -1,9 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hrossouw
- * Date: 2018/10/31
- * Time: 14:42
- */
+session_start();
+session_destroy();
+
+echo "<script>window.open('index.php','self')</script>";
 
 ?>

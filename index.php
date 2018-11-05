@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+    session_start();
+    include("functions/functions.php");
     include('config.php');
     include('db.php');
 ?>
@@ -52,7 +54,7 @@
         <div class="hero-head">
             <div class="columns is-mobile is-marginless heading has-text-weight-bold">
                 <div class="column left">
-                    <a href="index.html" class="navbar-item has-text-white"> Home</a>
+                    <a href="index.php" class="navbar-item has-text-white"> Home</a>
                     <p class="navbar-item has-text-white"> Gallery</p>
                 </div>
                 <div class="column center">
@@ -60,7 +62,15 @@
                 </div>
                 <div class="column right">
                     <a href="myaccount.php" class="navbar-item has-text-white">My Account</a>
-                    <a href="login.php" class="navbar-item has-text-white">Login</a>
+                    <?php
+                    if(!isset($_SESSION['customer_email'])){
+                        echo "<a href=\"login.php\" class=\"navbar-item has-text-white\">Login</a>";
+                    }
+                    else {
+                        echo "<a href=\"logout.php\" class=\"navbar-item has-text-white\">Logout</a>";
+                    }
+                    ?>
+
                     <a href="register.php" class="navbar-item has-text-white">Sign up</a>
                 </div>
             </div>

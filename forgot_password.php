@@ -53,7 +53,7 @@ include('db.php');
     <div class="hero-head">
         <div class="columns is-mobile is-marginless heading has-text-weight-bold">
             <div class="column left">
-                <a href="index.html" class="navbar-item has-text-white"> Home</a>
+                <a href="index.php" class="navbar-item has-text-white"> Home</a>
                 <p class="navbar-item has-text-white"> Gallery</p>
             </div>
             <div class="column center">
@@ -94,7 +94,7 @@ include('db.php');
             <button class="button is-primary">Send Password</button>
         </div>
         <div class="control">
-            <a class="button" href="index.html">Cancel</a>
+            <a class="button" href="index.php">Cancel</a>
         </div>
     </div>
     </form>
