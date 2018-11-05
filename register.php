@@ -91,7 +91,7 @@ if(isset($_POST['register'])){
         <div class="field">
             <label class="label">Name</label>
             <div class="control has-icons-left">
-                <input class="input" type="text" name="name" placeholder="e.g Alex Smith" value="<?php echo @$_SESSION['name'];?>" required>
+                <input class="input" type="text" name="c_name" placeholder="e.g Alex Smith" value="<?php echo @$_SESSION['name'];?>" required>
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
@@ -101,7 +101,7 @@ if(isset($_POST['register'])){
         <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left">
-                <input class="input" type="email" name="email" placeholder="e.g. alexsmith@gmail.com" value="<?php echo @$_SESSION['email'];?>" required>
+                <input class="input" type="email" name="c_email" placeholder="e.g. alexsmith@gmail.com" value="<?php echo @$_SESSION['email'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
                 </span>
@@ -111,109 +111,42 @@ if(isset($_POST['register'])){
         <div class="field">
             <label class="label">Password</label>
             <div class="control has-icons-left">
-                <input class="input" type="text" name="password" placeholder="battery horse staple" value="<?php echo @$_SESSION['password'];?>" required>
+                <input class="input" type="password" name="c_pass" placeholder="battery horse staple" value="<?php echo @$_SESSION['password'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-password"></i>
                 </span>
             </div>
         </div>
 
-        <div class="field">
-            <label class="label">Confirm Password</label>
-            <div class="control has-icons-left">
-                <input class="input" type="text" name="confirm_password" placeholder="battery horse staple" value="<?php echo @$_SESSION['confirm_password'];?>" required>
-                <span class="icon is-small is-left">
-                <i class="fas fa-password"></i>
-                </span>
-            </div>
-        </div>
 
+            <div class="field">
+                <label class="label">User Image</label>
+                </span>
+                </div>
+            <div class="file field">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="c_image">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                        Choose a image…
+                        </span>
+                    </span>
+                </label>
+            </div>
+
+        <!--Buttons-->
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-primary">Register</button>
+                <button class="button is-primary" value="Create Account">Register</button>
             </div>
             <div class="control">
                 <a class="button" href="index.html">Cancel</a>
             </div>
         </div>
         </form>
-        <?php /* JUST COMMENTED TO REMOVE TEMP!
-            <form action="register.php" method="post" enctype="multipart/form-data">
-
-            <table align="center" width="750">
-
-                <tr align="center">
-                    <td colspan="6"><h2>Create an Account</h2></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer Name:</td>
-                    <td><input type="text" name="c_name" required/></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer Email:</td>
-                    <td><input type="text" name="c_email" required/></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer Password:</td>
-                    <td><input type="password" name="c_pass" required/></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer Image:</td>
-                    <td><input type="file" name="c_image" required/></td>
-                </tr>
-
-
-
-                <tr>
-                    <td align="right">Customer Country:</td>
-                    <td>
-                        <select name="c_country">
-                            <option>Select a Country</option>
-                            <option>Afghanistan</option>
-                            <option>India</option>
-                            <option>Japan</option>
-                            <option>Pakistan</option>
-                            <option>Israel</option>
-                            <option>Nepal</option>
-                            <option>United Arab Emirates</option>
-                            <option>United States</option>
-                            <option>United Kingdom</option>
-                        </select>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer City:</td>
-                    <td><input type="text" name="c_city" required/></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer Contact:</td>
-                    <td><input type="text" name="c_contact" required/></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer Address</td>
-                    <td><input type="text" name="c_address" required/></td>
-                </tr>
-
-
-                <tr align="center">
-                    <td colspan="6"><input type="submit" name="register" value="Create Account" /></td>
-                </tr>
-
-
-
-            </table>
-
-        </form>
-
-        </div> */ ?>
     </section>
 
     <!-- .hero foot-->
