@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <?php
+    session_start();
     include('config.php');
+    include("includes/db.php");
     include('db.php');
+    include ("functions/functions.php");
 ?>
 <html>
 <head>
@@ -76,11 +79,11 @@
                 Login
             </div>
         </div>
-        <form>
+        <form action="login.php" method="post">
         <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left">
-                <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" required>
+                <input class="input" type="email" name="email" placeholder="e.g. alexsmith@gmail.com" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
                 </span>
@@ -90,7 +93,7 @@
         <div class="field">
             <label class="label">Password</label>
             <div class="control has-icons-left">
-                <input class="input" type="password" placeholder="battery horse staple" required>
+                <input class="input" type="password" name="pass" placeholder="battery horse staple" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-password"></i>
                 </span>
@@ -99,7 +102,7 @@
 
         <div class="field is-grouped">
         <div class="control">
-            <button class="button is-primary">Login</button>
+            <button class="button is-primary" name="login" value="login">Login</button>
         </div>
         <div class="control">
             <a class="button is-info" href="forgot_password.php">Forgot Password?</a>
@@ -111,83 +114,32 @@
             Remember me
         </label>
         </form>
-        <?php /* JUST COMMENTED TO REMOVE TEMP!
-            <form action="register.php" method="post" enctype="multipart/form-data">
 
-            <table align="center" width="750">
+        <?php
+            if(isset($_POST['login'])){
+                $c_email = $_POST['email'];
+                $c_pass = $_POST['pass'];
 
-                <tr align="center">
-                    <td colspan="6"><h2>Create an Account</h2></td>
-                </tr>
+                $sel_c = "select * from customers where customer_pass ='$c_pass' AND customer_email='$c_email'";
 
-                <tr>
-                    <td align="right">Customer Name:</td>
-                    <td><input type="text" name="c_name" required/></td>
-                </tr>
+                $run_c = mysqli_query($con, $sel_c);
 
-                <tr>
-                    <td align="right">Customer Email:</td>
-                    <td><input type="text" name="c_email" required/></td>
-                </tr>
+                $check_customer = mysqli_num_rows($run_c);
 
-                <tr>
-                    <td align="right">Customer Password:</td>
-                    <td><input type="password" name="c_pass" required/></td>
-                </tr>
+                if($check_customer==1){
 
-                <tr>
-                    <td align="right">Customer Image:</td>
-                    <td><input type="file" name="c_image" required/></td>
-                </tr>
+                    echo "<script>alert('Login Successful!')</script>";
+                    echo "<script>window.open('myaccount.php','_self')</script>";
 
+                }
+                else {
+                    echo "<script>alert('Password or email is incorrect!')</script>";
+                    exit();
+                }
 
-
-                <tr>
-                    <td align="right">Customer Country:</td>
-                    <td>
-                        <select name="c_country">
-                            <option>Select a Country</option>
-                            <option>Afghanistan</option>
-                            <option>India</option>
-                            <option>Japan</option>
-                            <option>Pakistan</option>
-                            <option>Israel</option>
-                            <option>Nepal</option>
-                            <option>United Arab Emirates</option>
-                            <option>United States</option>
-                            <option>United Kingdom</option>
-                        </select>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer City:</td>
-                    <td><input type="text" name="c_city" required/></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer Contact:</td>
-                    <td><input type="text" name="c_contact" required/></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Customer Address</td>
-                    <td><input type="text" name="c_address" required/></td>
-                </tr>
-
-
-                <tr align="center">
-                    <td colspan="6"><input type="submit" name="register" value="Create Account" /></td>
-                </tr>
-
-
-
-            </table>
-
-        </form>
-
-        </div> */ ?>
+                $ip = getIp();
+            }
+        ?>
     </section>
 
     <!-- .hero foot-->
