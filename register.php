@@ -1,16 +1,7 @@
 <?php
-session_start();
 
-include('config.php');
-include('db.php');
-
-if(isset($_POST['register'])){
-    $_SESSION['name'] = $_POST['name'];
-    $_SESSION['email'] = $_POST['email'];
-    $_SESSION['password'] = $_POST['password'];
-    $_SESSION['confirm_password'] = $_POST['confirm_password'];
-
-}
+include ("functions/functions.php");
+include ("includes/db.php")
 ?>
 
 <!DOCTYPE html>
@@ -140,7 +131,7 @@ if(isset($_POST['register'])){
         <!--Buttons-->
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-primary" value="Create Account">Register</button>
+                <button class="button is-primary" value="Create Account" name="register">Register</button>
             </div>
             <div class="control">
                 <a class="button" href="index.html">Cancel</a>
@@ -164,3 +155,27 @@ if(isset($_POST['register'])){
     </section>
 </body>
 </html>
+
+<?php
+    if(isset($_POST['register'])){
+
+        $ip = getIp();
+        $c_name = $_POST['c_name'];
+        $c_email = $_POST['c_email'];
+        $c_pass = $_POST['c_pass'];
+        $c_image = $_FILES['c_image']['name'];
+        $c_image_tmp = $_FILES['c_image']['tmp_name'];
+
+        move_uploaded_file($c_image_tmp, "customer/customer_images/$c_image");
+
+        $insert_c = "insert into customers (customer_ip, customer_name, customer_email, customer_pass, customer_image) 
+          values ('$ip', '$c_name', '$c_email', '$c_pass', '$c_image')";
+
+        $run_c = mysqli_query($con, $insert_c);
+
+        if ($run_c){
+            echo "<script>alert('registration successful!')</script>";
+        }
+
+    }
+?>
