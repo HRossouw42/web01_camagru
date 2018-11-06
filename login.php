@@ -4,7 +4,7 @@
     include('config.php');
     include("includes/db.php");
     include('db.php');
-    include ("functions/functions.php");
+    include("functions/functions.php");
 ?>
 <html>
 <head>
