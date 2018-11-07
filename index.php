@@ -3,6 +3,7 @@
     session_start();
     include("functions/functions.php");
     include('config.php');
+    include("includes/db.php");
     include('db.php');
 ?>
 <html>

@@ -1,7 +1,9 @@
 <?php
-session_start();
-include('config.php');
-include('db.php');
+    session_start();
+    include("functions/functions.php");
+    include('config.php');
+    include("includes/db.php");
+    include('db.php');
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +64,14 @@ include('db.php');
             </div>
             <div class="column right">
                 <a href="myaccount.php" class="navbar-item has-text-white">My Account</a>
+                <?php
+                if(!isset($_SESSION['customer_email'])){
+                    echo "<a href=\"login.php\" class=\"navbar-item has-text-white\">Login</a>";
+                }
+                else {
+                    echo "<a href=\"logout.php\" class=\"navbar-item has-text-white\">Logout</a>";
+                }
+                ?>
                 <a href="logout.php" class="navbar-item has-text-white">Logout</a>
                 <a href="register.php" class="navbar-item has-text-white">Sign up</a>
             </div>
@@ -75,7 +85,16 @@ include('db.php');
 
     <div class="columns">
         <div class="column is-size-2 center-column">
-            <p>Hello, <?php $_SESSION['user_name']; ?>!</p>
+            <?php
+            if(!isset($_SESSION['customer_email'])){
+                echo "<p>Hello, </p>" . $_SESSION['customer_email'];
+            }
+            else {
+                echo "<p>Hello, Guest! Please register for full access!</p>";
+            }
+            ?>
+
+
         </div>
     </div>
 
