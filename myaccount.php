@@ -86,14 +86,13 @@
     <div class="columns">
         <div class="column is-size-2 center-column">
             <?php
-            if(!isset($_SESSION['customer_email'])){
+            if(isset($_SESSION['customer_email'])){
                 echo "<p>Hello, </p>" . $_SESSION['customer_email'];
             }
             else {
                 echo "<p>Hello, Guest! Please register for full access!</p>";
             }
             ?>
-
 
         </div>
     </div>
