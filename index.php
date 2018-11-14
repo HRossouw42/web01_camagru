@@ -7,7 +7,8 @@
     include('db.php');
 
     echo $_SESSION ['customer_email'];
-?>
+
+    ?>
 <html>
 <head>
     <meta charset="utf-8">

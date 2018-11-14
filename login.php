@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+    session_start();
     include('config.php');
     include("includes/db.php");
     include('db.php');
