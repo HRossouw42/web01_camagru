@@ -5,6 +5,8 @@
     include('config.php');
     include("includes/db.php");
     include('db.php');
+
+    echo $_SESSION ['customer_email'];
 ?>
 <html>
 <head>

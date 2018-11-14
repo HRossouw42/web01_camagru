@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     include("functions/functions.php");
     include('config.php');
     include("includes/db.php");
@@ -72,7 +73,6 @@
                     echo "<a href=\"logout.php\" class=\"navbar-item has-text-white\">Logout</a>";
                 }
                 ?>
-                <a href="logout.php" class="navbar-item has-text-white">Logout</a>
                 <a href="register.php" class="navbar-item has-text-white">Sign up</a>
             </div>
         </div>

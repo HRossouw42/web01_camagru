@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-    session_start();
     include('config.php');
     include("includes/db.php");
     include('db.php');
@@ -126,7 +125,9 @@
 
                 $check_customer = mysqli_num_rows($run_c);
 
-                if($check_customer==1){
+                if($check_customer>0){
+
+                    $_SESSION['customer_email']=$c_email;
 
                     echo "<script>alert('Login Successful!')</script>";
                     echo "<script>window.open('myaccount.php','_self')</script>";
