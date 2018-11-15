@@ -45,6 +45,19 @@ if (mysqli_query($conn, $sql)) {
     echo "Error creating table: ".mysqli_error($conn)."<br>";
 }
 
+// Webcam table
+$sql = "CREATE TABLE IF NOT EXISTS `snapshot` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Image` varchar(20000) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+
+if (mysqli_query($conn, $sql)) {
+    echo "Table for webcam created successfully<br>";
+} else {
+    echo "Error creating table: ".mysqli_error($conn)."<br>";
+}
+
 mysqli_close($conn);
 ?>
 
