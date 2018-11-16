@@ -58,11 +58,26 @@ include("includes/db.php")
                     <p class="navbar-item has-text-white"> Gallery</p>
                 </div>
                 <div class="column center">
-                    <p class="navbar-item has-text-white">LOGO</p>
+                    <?php
+                    if(!isset($_SESSION['customer_email'])){
+                        echo "<a href=\"login.php\" class=\"navbar-item has-text-white\">Login to add photos</a>";
+                    }
+                    else {
+                        echo "<a href=\"editor.php\" class=\"navbar-item has-text-white\">Add a photo</a>";
+                    }
+                    ?>
                 </div>
                 <div class="column right">
                     <a href="myaccount.php" class="navbar-item has-text-white">My Account</a>
-                    <a href="login.php" class="navbar-item has-text-white">Login</a>
+                    <?php
+                    if(!isset($_SESSION['customer_email'])){
+                        echo "<a href=\"login.php\" class=\"navbar-item has-text-white\">Login</a>";
+                    }
+                    else {
+                        echo "<a href=\"logout.php\" class=\"navbar-item has-text-white\">Logout</a>";
+                    }
+                    ?>
+
                     <a href="register.php" class="navbar-item has-text-white">Sign up</a>
                 </div>
             </div>
