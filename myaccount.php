@@ -71,7 +71,7 @@
                 ?>
             </div>
             <div class="column right">
-                <a href="myaccount.php" class="navbar-item has-text-white">My Account</a>
+                <a href="myaccount.php" class="navbar-item has-text-black is-active">My Account</a>
                 <?php
                 if(!isset($_SESSION['customer_email'])){
                     echo "<a href=\"login.php\" class=\"navbar-item has-text-white\">Login</a>";

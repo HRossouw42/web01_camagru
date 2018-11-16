@@ -78,7 +78,7 @@ include("includes/db.php")
                     }
                     ?>
 
-                    <a href="register.php" class="navbar-item has-text-white">Sign up</a>
+                    <a href="register.php" class="navbar-item has-text-black is-active">Sign up</a>
                 </div>
             </div>
         </div>

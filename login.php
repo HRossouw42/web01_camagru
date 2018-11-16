@@ -72,7 +72,7 @@
                     <a href="myaccount.php" class="navbar-item has-text-white">My Account</a>
                     <?php
                     if(!isset($_SESSION['customer_email'])){
-                        echo "<a href=\"login.php\" class=\"navbar-item has-text-white\">Login</a>";
+                        echo "<a href=\"login.php\" class=\"navbar-item has-text-black is-active\">Login</a>";
                     }
                     else {
                         echo "<a href=\"logout.php\" class=\"navbar-item has-text-white\">Logout</a>";

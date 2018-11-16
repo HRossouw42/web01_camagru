@@ -68,7 +68,7 @@
                         echo "<a href=\"login.php\" class=\"navbar-item has-text-white\">Login to add photos</a>";
                     }
                     else {
-                        echo "<a href=\"editor.php\" class=\"navbar-item has-text-white\">Add a photo</a>";
+                        echo "<a href=\"editor.php\" class=\"navbar-item has-text-black is-active\">Add a photo</a>";
                     }
                     ?>
                 </div>
