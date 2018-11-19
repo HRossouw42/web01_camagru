@@ -35,7 +35,10 @@
             font-size: smaller;
         }
 
-
+        #camera {
+            height: 500px;
+            width: 500px;
+        }
 
     </style>
 
@@ -122,8 +125,8 @@
 
 <style>
     #camera {
-        width: 800px;
-        height: 800px;
+        width: 500px;
+        height: 500px;
     }
 </style>
 
