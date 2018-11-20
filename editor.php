@@ -15,7 +15,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <!--<link rel="stylesheet" href="styles/debug.css">-->
+    <link rel="stylesheet" href="styles/debug.css">
     <link rel="stylesheet" href="styles/helpers.css">
     <style>
         .center {
@@ -94,13 +94,34 @@
 
     <!--.section-->
     <section class="section has-background-light">
+        <section class="hero-center">
+            <div class="container field-body">
+                <div class="columns">
+                <div class="column is-half"><video class="webcamma" autoplay="true" id="video"><video></div>
+                    <div class="column is-half"><canvas class="webcamma" id="canvas" ></canvas></div>
+                    <div class="columns is-mobile">
+                        <div class="column">
+                            <p class="bd-notification is-info">First nested column</p>
+                        </div>
+                        <div class="column">
+                            <p class="bd-notification is-info">Second nested column</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <button class="btn1" onclick="snap();">Take Picture</button>
+
+        </section>
         <!-- Camera non-ajax-->
-        <div style="width:100px; margin:auto">
-            <div style="position:absolute; top:10%; display:flex; flex-direction:column">
-                <video class="webcamma" autoplay="true" id="video"></video><br>
-                <button class="btn1" style="margin-top:10px; flex:1; width:100%" onclick="snap();">Take Picture</button><br>
+        <div style="width:200px; margin:auto">
+            <div style="position:relative; top:10%; display:flex; flex-direction:column">
+<!--                <video class="webcamma" autoplay="true" id="video"></video><br>-->
+<!--                <button class="btn1" style="margin-top:10px; flex:1; width:100%" onclick="snap();">Take Picture</button><br>-->
+<!--                <canvas class="webcamma" id="canvas" ></canvas>-->
                 <input  class="filters" style="width:100%; color:white; font-family:'K2D'; margin-top:10px" type="file" id="imageLoader" name="imageLoader"/><br>
-                <canvas class="webcamma" id="canvas" style="margin-top:10px"></canvas>
+
             </div>
             <div>
                 <form method="post" style="position:relative; margin-top:17.5%;" class="filters">
@@ -136,6 +157,7 @@
             <input style="position:absolute; right:10%; bottom:10%"id="add_gal" type="button" name="addgal" style="margin-left:52.5px" class="btn1" value="Add to gallery">
             <img id="testimg" src="">
         </div>
+
         <script type="text/javascript">
             var video = document.getElementById('video');
             var canvas = document.getElementById('canvas');
