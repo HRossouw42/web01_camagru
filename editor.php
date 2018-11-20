@@ -94,79 +94,139 @@
 
     <!--.section-->
     <section class="section has-background-light">
-
-
-        <!--camera-->
-        <div class="container">
-            <div class="row">Tutorial</a></div>
-            <div class="col-md-6">
-                <div class="text-center">
-                    <div id="camera_info"></div>
-                    <div id="camera"></div><br>
-                    <button id="take_snapshots" class="btn btn-success btn-sm">Take Snapshots</button>
-                </div>
+        <!-- Camera non-ajax-->
+        <div style="width:100px; margin:auto">
+            <div style="position:absolute; top:10%; display:flex; flex-direction:column">
+                <video class="webcamma" autoplay="true" id="video"></video><br>
+                <button class="btn1" style="margin-top:10px; flex:1; width:100%" onclick="snap();">Take Picture</button><br>
+                <input  class="filters" style="width:100%; color:white; font-family:'K2D'; margin-top:10px" type="file" id="imageLoader" name="imageLoader"/><br>
+                <canvas class="webcamma" id="canvas" style="margin-top:10px"></canvas>
             </div>
-            <div class="col-md-6">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Image</th><th>Image Name</th>
-                    </tr>
-                    </thead>
-                    <tbody id="imagelist">
+            <div>
+                <form method="post" style="position:relative; margin-top:17.5%;" class="filters">
+                    <div class="filtereth">Blur
+                        <input min="0" max="20" value="0" step="1" oninput="applyFilter()" data-filter="blur" data-scale="px" type="range"></div>
 
-                    </tbody>
-                </table>
+                    <div class="filtereth">Brightness
+                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="brightness" data-scale="%" type="range"></div>
+
+                    <div class="filtereth">Contrast
+                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="contrast" data-scale="%" type="range"></div>
+
+                    <div class="filtereth">Grayscale
+                        <input min="1" max="100" value="1" step="1" oninput="applyFilter()" data-filter="grayscale" data-scale="%" type="range"></div>
+
+                    <div class="filtereth">Hue Rotate
+                        <input min="0" max="360" value="0" step="1" oninput="applyFilter()" data-filter="hue-rotate" data-scale="deg" type="range"></div>
+
+                    <div class="filtereth">Invert
+                        <input min="0" max="100" value="0" step="1" oninput="applyFilter()" data-filter="invert" data-scale="%" type="range"></div>
+
+                    <div class="filtereth">Opacity
+                        <input min="0" max="100" value="100" step="1" oninput="applyFilter()" data-filter="opacity" data-scale="%" type="range"></div>
+
+                    <div class="filtereth">Saturate
+                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="saturate" data-scale="%" type="range"></div>
+
+                    <div class="filtereth">Sepia
+                        <input min="0" max="100" value="0" step="1" oninput="applyFilter()" data-filter="sepia" data-scale="%" type="range"></div>
+                    <a id="download" download="image.png"><button style="margin-left:75px" class="btn1" type="button" onClick="download()">Download</button></a>
+                </form>
             </div>
+            <input style="position:absolute; right:10%; bottom:10%"id="add_gal" type="button" name="addgal" style="margin-left:52.5px" class="btn1" value="Add to gallery">
+            <img id="testimg" src="">
         </div>
+        <script type="text/javascript">
+            var video = document.getElementById('video');
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            var imageLoader = document.getElementById('imageLoader');
+            imageLoader.addEventListener('change', handleImage, false);
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia || navigator.oGetUserMedia || navigator.msGetUserMedia;
+            if (navigator.getUserMedia){
+                navigator.getUserMedia({video:true}, streamWebCam, throwError);
+            }
+            function streamWebCam(stream){
+                video.srcObject = stream;
+                video.play();
+            }
+            function throwError(e){
+                alert(e.name);
+            }
+            function snap(){
+                canvas.width = video.clientWidth;
+                canvas.height = video.clientHeight;
+                context.drawImage(video, 0, 0);
+                document.getElementById("canvas").style.transform = "rotateY(180deg)";
+                document.getElementById("imageLoader").value="";
+            }
+            var image = document.querySelector('canvas');
+            var filterControls = document.querySelectorAll('input[type=range]');
+            function applyFilter() {
+                var computedFilters = '';
+                filterControls.forEach(function(item, index) {
+                    computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ')';
+                });
+                image.style.filter = computedFilters;
+            };
+            function handleImage(e){
+                var reader = new FileReader();
+                reader.onload = function(event){
+                    var img = new Image();
+                    img.onload = function(){
+                        canvas.width = video.clientWidth;
+                        canvas.height = video.clientHeight;
+                        context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
+                    }
+                    img.src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+                document.getElementById("canvas").style.transform = "rotateY(0deg)";
+            }
+            function download(){
+                var download = document.getElementById("download");
+                var image = document.getElementById("canvas").toDataURL("image/png")
+                    .replace("image/png", "image/octet-stream");
 
-</body>
-</html>
+                download.setAttribute("href", image);
+            }
+            document.getElementById("add_gal").addEventListener("click", function(){
+                var img = new Image();
+                img.src = canvas.toDataURL();
+                var json = {
+                    pic: img.src
+                }
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'save.php', true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onreadystatechange = function (data) {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log(xhr.responseText);
+                    }
+                }
+                xhr.send(JSON.stringify(json))
+            });
+        </script>
 
-<style>
-    #camera {
-        width: 500px;
-        height: 500px;
-    }
-</style>
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="jpeg_camera/jpeg_camera_with_dependencies.min.js" type="text/javascript"></script>
-<script>
-    var options = {
-        shutter_ogg_url: "jpeg_camera/shutter.ogg",
-        shutter_mp3_url: "jpeg_camera/shutter.mp3",
-        swf_url: "jpeg_camera/jpeg_camera.swf",
-    };
-    var camera = new JpegCamera("#camera", options);
-
-    $('#take_snapshots').click(function(){
-        var snapshot = camera.capture();
-        snapshot.show();
-
-        snapshot.upload({api_url: "action.php"}).done(function(response) {
-            $('#imagelist').prepend("<tr><td><img src='"+response+"' width='100px' height='100px'></td><td>"+response+"</td></tr>");
-        }).fail(function(response) {
-            alert("Upload failed with status " + response);
-        });
-    })
-    function done(){
-        $('#snapshots').html("uploaded");
-    }
-</script>
-
-    <!-- .hero foot-->
-    <section class="hero-foot has-background-grey">
-        <div class="hero-body">
-            <div class="container">
-                <div class="columns">
-                    <div class="column center">
-                        <p class="navbar-item has-text-white has-text-weight-light has-text-centered">Made for the bestest doggos 💚</p>
-                        <p class="navbar-item has-text-white has-text-weight-light has-text-centered">©2018 - HRossouw</p>
+        <!-- .hero foot-->
+        <section class="hero-foot has-background-grey">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns">
+                        <div class="column center">
+                            <p class="navbar-item has-text-white has-text-weight-light has-text-centered">Made for the bestest doggos 💚</p>
+                            <p class="navbar-item has-text-white has-text-weight-light has-text-centered">©2018 - HRossouw</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 </body>
 </html>
+
+
+
+
+
+
