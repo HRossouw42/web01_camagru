@@ -15,7 +15,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <link rel="stylesheet" href="styles/debug.css">
+<!--    <link rel="stylesheet" href="styles/debug.css">-->
     <link rel="stylesheet" href="styles/helpers.css">
     <style>
         .center {
@@ -99,13 +99,7 @@
                 <div class="columns">
                 <div class="column is-half"><video class="webcamma" autoplay="true" id="video"><video></div>
                     <div class="column is-half"><canvas class="webcamma" id="canvas" ></canvas></div>
-                    <div class="columns is-mobile">
-                        <div class="column">
-                            <p class="bd-notification is-info">First nested column</p>
-                        </div>
-                        <div class="column">
-                            <p class="bd-notification is-info">Second nested column</p>
-                        </div>
+
                     </div>
                 </div>
                 </div>
