@@ -98,7 +98,7 @@
             <div class="container field-body">
                 <div class="columns">
                 <div class="column is-half"><video class="webcamma" autoplay="true" id="video"><video></div>
-                    <div class="column is-half"><canvas class="webcamma" id="canvas" >Please use Chrome!</canvas></div>
+                    <div class="column is-half"><canvas class="canvas" id="canvas" >Please use Chrome!</canvas></div>
 
                     </div>
                 </div>
@@ -178,12 +178,10 @@
                 canvas.width = video.clientWidth;
                 canvas.height = video.clientHeight;
 
-                context.drawImage(video, 0, 0, width, height);
+                context.drawImage(video, 0, 0);
 
-                document.getElementById("canvas").style.transform = "rotateY(180deg)";
                 document.getElementById("imageLoader").value="";
-                document.getElementById("canvas").style.webkitTransform = "rotateY(180deg)";
-                document.getElementById("canvas").style.mozTransform = "rotateY(180deg)";
+
                 imageLoader.value="";
             }
             var image = document.querySelector('canvas');
@@ -196,7 +194,9 @@
                     computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ')';
                 });
                 image.style.filter = computedFilters;
+                canvas.style.filter = computedFilters;
             }
+
             function handleImage(e){
                 var reader = new FileReader();
                 reader.onload = function(event){
@@ -206,6 +206,7 @@
                         canvas.height = video.clientHeight;
                         context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
                     };
+                    encodeURIComponent(JSON.stringify(img.src));
                     img.src = event.target.result;
                 };
                 reader.readAsDataURL(e.target.files[0]);
@@ -215,8 +216,7 @@
             //downloading canvas
             function download(){
                 var download = document.getElementById("download");
-                var image = document.getElementById("canvas").toDataURL("image/png")
-                    .replace("image/png", "image/octet-stream");
+                var image = document.getElementById("canvas").toDataURL("image/png");
 
                 download.setAttribute("href", image);
             }
