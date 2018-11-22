@@ -98,7 +98,7 @@
             <div class="container field-body">
                 <div class="columns">
                 <div class="column is-half"><video class="webcamma" autoplay="true" id="video"><video></div>
-                    <div class="column is-half"><canvas class="webcamma" id="canvas" ></canvas></div>
+                    <div class="column is-half"><canvas class="webcamma" id="canvas" >Please use Chrome!</canvas></div>
 
                     </div>
                 </div>
@@ -153,9 +153,11 @@
         </div>
 
         <script type="text/javascript">
-            var video = document.getElementById('video');
+
+            //setting up the camera
             var canvas = document.getElementById('canvas');
             var context = canvas.getContext('2d');
+            var video = document.getElementById('video');
             var imageLoader = document.getElementById('imageLoader');
             imageLoader.addEventListener('change', handleImage, false);
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -170,14 +172,23 @@
             function throwError(e){
                 alert(e.name);
             }
+
+            //clicking camera on button press
             function snap(){
                 canvas.width = video.clientWidth;
                 canvas.height = video.clientHeight;
-                context.drawImage(video, 0, 0);
+
+                context.drawImage(video, 0, 0, width, height);
+
                 document.getElementById("canvas").style.transform = "rotateY(180deg)";
                 document.getElementById("imageLoader").value="";
+                document.getElementById("canvas").style.webkitTransform = "rotateY(180deg)";
+                document.getElementById("canvas").style.mozTransform = "rotateY(180deg)";
+                imageLoader.value="";
             }
             var image = document.querySelector('canvas');
+
+            //filters
             var filterControls = document.querySelectorAll('input[type=range]');
             function applyFilter() {
                 var computedFilters = '';
@@ -185,7 +196,7 @@
                     computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ')';
                 });
                 image.style.filter = computedFilters;
-            };
+            }
             function handleImage(e){
                 var reader = new FileReader();
                 reader.onload = function(event){
@@ -194,12 +205,14 @@
                         canvas.width = video.clientWidth;
                         canvas.height = video.clientHeight;
                         context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-                    }
+                    };
                     img.src = event.target.result;
-                }
+                };
                 reader.readAsDataURL(e.target.files[0]);
                 document.getElementById("canvas").style.transform = "rotateY(0deg)";
             }
+
+            //downloading canvas
             function download(){
                 var download = document.getElementById("download");
                 var image = document.getElementById("canvas").toDataURL("image/png")
@@ -207,20 +220,22 @@
 
                 download.setAttribute("href", image);
             }
+
+            //adding to gallery
             document.getElementById("add_gal").addEventListener("click", function(){
                 var img = new Image();
                 img.src = canvas.toDataURL();
                 var json = {
                     pic: img.src
-                }
+                };
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'save.php', true);
                 xhr.setRequestHeader('Content-type', 'application/json');
                 xhr.onreadystatechange = function (data) {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
                         console.log(xhr.responseText);
                     }
-                }
+                };
                 xhr.send(JSON.stringify(json))
             });
         </script>
