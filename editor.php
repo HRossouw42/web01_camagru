@@ -5,8 +5,25 @@
     include('config.php');
     include("includes/db.php");
     include('db.php');
+    //loading stickers from file
+    $stuff = json_decode(file_get_contents("php://input"), true);
+    switch($stuff){
+        case "sticker1":
+            $sticker = imagecreatefrompng('./img/sticker/sticker1.png');
+            $src = "./images/sticker1.png";
+            break;
+        case "sticker2":
+            $sticker = imagecreatefrompng('./img/sticker/sticker2.png');
+            $src = "./images/sticker2.png";
+            break;
+        case "sticker3":
+            $sticker = imagecreatefrompng('./img/sticker/sticker3.png');
+            $src = "./images/sticker3.png";
+            break;
+}
 
-    ?>
+?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -41,6 +58,8 @@
         }
 
     </style>
+
+
 
 </head>
 <body>
@@ -97,7 +116,7 @@
         <section class="hero-center">
             <div class="container field-body">
                 <div class="columns">
-                <div class="column is-half"><video class="webcamma" autoplay="true" id="video"><video></div>
+                <div class="column is-half"><video class="webcamma" id="video"><video></div>
                     <div class="column is-half"><canvas class="canvas" id="canvas" >Please use Chrome!</canvas></div>
 
                     </div>
@@ -106,6 +125,7 @@
 
             </div>
             <button class="btn1" onclick="snap();">Take Picture</button>
+            <a id="download" download="image.png"><button style="margin-left:75px" class="btn1" type="button" onClick="download()">Download</button></a>
 
         </section>
         <!-- Camera non-ajax-->
@@ -117,37 +137,38 @@
                 <input  class="filters" style="width:100%; color:white; font-family:'K2D'; margin-top:10px" type="file" id="imageLoader" name="imageLoader"/><br>
 
             </div>
-            <div>
-                <form method="post" style="position:relative; margin-top:17.5%;" class="filters">
-                    <div class="filtereth">Blur
-                        <input min="0" max="20" value="0" step="1" oninput="applyFilter()" data-filter="blur" data-scale="px" type="range"></div>
-
-                    <div class="filtereth">Brightness
-                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="brightness" data-scale="%" type="range"></div>
-
-                    <div class="filtereth">Contrast
-                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="contrast" data-scale="%" type="range"></div>
-
-                    <div class="filtereth">Grayscale
-                        <input min="1" max="100" value="1" step="1" oninput="applyFilter()" data-filter="grayscale" data-scale="%" type="range"></div>
-
-                    <div class="filtereth">Hue Rotate
-                        <input min="0" max="360" value="0" step="1" oninput="applyFilter()" data-filter="hue-rotate" data-scale="deg" type="range"></div>
-
-                    <div class="filtereth">Invert
-                        <input min="0" max="100" value="0" step="1" oninput="applyFilter()" data-filter="invert" data-scale="%" type="range"></div>
-
-                    <div class="filtereth">Opacity
-                        <input min="0" max="100" value="100" step="1" oninput="applyFilter()" data-filter="opacity" data-scale="%" type="range"></div>
-
-                    <div class="filtereth">Saturate
-                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="saturate" data-scale="%" type="range"></div>
-
-                    <div class="filtereth">Sepia
-                        <input min="0" max="100" value="0" step="1" oninput="applyFilter()" data-filter="sepia" data-scale="%" type="range"></div>
-                    <a id="download" download="image.png"><button style="margin-left:75px" class="btn1" type="button" onClick="download()">Download</button></a>
-                </form>
+            <div> <!-- filters -->
+<!--                <form method="post" style="position:relative; margin-top:17.5%;" class="filters">-->
+<!--                    <div class="filtereth">Blur-->
+<!--                        <input min="0" max="20" value="0" step="1" oninput="applyFilter()" data-filter="blur" data-scale="px" type="range"></div>-->
+<!---->
+<!--                    <div class="filtereth">Brightness-->
+<!--                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="brightness" data-scale="%" type="range"></div>-->
+<!---->
+<!--                    <div class="filtereth">Contrast-->
+<!--                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="contrast" data-scale="%" type="range"></div>-->
+<!---->
+<!--                    <div class="filtereth">Grayscale-->
+<!--                        <input min="1" max="100" value="1" step="1" oninput="applyFilter()" data-filter="grayscale" data-scale="%" type="range"></div>-->
+<!---->
+<!--                    <div class="filtereth">Hue Rotate-->
+<!--                        <input min="0" max="360" value="0" step="1" oninput="applyFilter()" data-filter="hue-rotate" data-scale="deg" type="range"></div>-->
+<!---->
+<!--                    <div class="filtereth">Invert-->
+<!--                        <input min="0" max="100" value="0" step="1" oninput="applyFilter()" data-filter="invert" data-scale="%" type="range"></div>-->
+<!---->
+<!--                    <div class="filtereth">Opacity-->
+<!--                        <input min="0" max="100" value="100" step="1" oninput="applyFilter()" data-filter="opacity" data-scale="%" type="range"></div>-->
+<!---->
+<!--                    <div class="filtereth">Saturate-->
+<!--                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="saturate" data-scale="%" type="range"></div>-->
+<!---->
+<!--                    <div class="filtereth">Sepia-->
+<!--                        <input min="0" max="100" value="0" step="1" oninput="applyFilter()" data-filter="sepia" data-scale="%" type="range"></div>-->
+<!--                    -->
+<!--                </form>-->
             </div>
+
             <input style="position:absolute; right:10%; bottom:10%"id="add_gal" type="button" name="addgal" style="margin-left:52.5px" class="btn1" value="Add to gallery">
             <img id="testimg" src="">
         </div>
@@ -159,12 +180,15 @@
             var context = canvas.getContext('2d');
             var video = document.getElementById('video');
             var imageLoader = document.getElementById('imageLoader');
+
             imageLoader.addEventListener('change', handleImage, false);
+
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
                 navigator.mozGetUserMedia || navigator.oGetUserMedia || navigator.msGetUserMedia;
             if (navigator.getUserMedia){
                 navigator.getUserMedia({video:true}, streamWebCam, throwError);
             }
+
             function streamWebCam(stream){
                 video.srcObject = stream;
                 video.play();
@@ -178,9 +202,16 @@
                 canvas.width = video.clientWidth;
                 canvas.height = video.clientHeight;
 
+                //save canvas
+                context.translate(canvas.width, 0);
+                context.scale(-1, 1);
+                context.save();
+                context.restore();
                 context.drawImage(video, 0, 0);
 
-                document.getElementById("imageLoader").value="";
+                document.getElementById("canvas").style.transform = "rotateY(180deg)";
+                document.getElementById("canvas").style.webkitTransform = "rotateY(180deg)";
+                document.getElementById("canvas").style.mozTransform = "rotateY(180deg)";
 
                 imageLoader.value="";
             }
@@ -197,6 +228,7 @@
                 canvas.style.filter = computedFilters;
             }
 
+            //saving the image (WIP)
             function handleImage(e){
                 var reader = new FileReader();
                 reader.onload = function(event){
@@ -221,7 +253,7 @@
                 download.setAttribute("href", image);
             }
 
-            //adding to gallery
+            //adding to gallery (WIP)
             document.getElementById("add_gal").addEventListener("click", function(){
                 var img = new Image();
                 img.src = canvas.toDataURL();
