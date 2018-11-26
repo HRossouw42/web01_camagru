@@ -254,7 +254,7 @@
             }
 
             //adding to gallery (WIP)
-            document.getElementById("add_gal").addEventListener("click", function(){
+            document.getElementById("add_gal").addEventListener("click", function() {
                 var img = new Image();
                 img.src = canvas.toDataURL();
                 var json = {
