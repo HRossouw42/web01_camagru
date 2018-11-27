@@ -5,6 +5,7 @@
     include('config.php');
     include("includes/db.php");
     include('db.php');
+
     //loading stickers from file
     $stuff = json_decode(file_get_contents("php://input"), true);
     switch($stuff){
@@ -21,6 +22,9 @@
             $src = "./images/sticker3.png";
             break;
 }
+    $im = imagecreatefrompng('./bot.png');
+    imagecopyresampled($im, $sticker, 0, 0, 0, 0, 640, 480, 640, 480);
+    imagepng($im, $_SESSION["customer_email"]."new.png");
 
 ?>
 
@@ -50,11 +54,6 @@
             background-color: dimgrey;
             color: white;
             font-size: smaller;
-        }
-
-        #camera {
-            height: 500px;
-            width: 500px;
         }
 
     </style>
@@ -117,7 +116,7 @@
             <div class="container field-body">
                 <div class="columns">
                 <div class="column is-half"><video class="webcamma" id="video"><video></div>
-                    <div class="column is-half"><canvas class="canvas" id="canvas" >Please use Chrome!</canvas></div>
+                    <div class="column is-half" id="canvdiv"><canvas class="canvas" id="canvas" >Please use Chrome!</canvas></div>
 
                     </div>
                 </div>
@@ -126,6 +125,11 @@
             </div>
             <button class="btn1" onclick="snap();">Take Picture</button>
             <a id="download" download="image.png"><button style="margin-left:75px" class="btn1" type="button" onClick="download()">Download</button></a>
+            <div class="container filterdiv">
+                <img src='./img/stickers/sticker1.png' id='sticker1' width='30%' onclick='addSticker(id)'>
+                <img src='./img/stickers/sticker2.png' id='sticker2' width='30%' onclick='addSticker(id)'>
+                <img src='./img/stickers/sticker3.png' id='sticker3' width='30%' onclick='addSticker(id)'>
+            </div>
 
         </section>
         <!-- Camera non-ajax-->
@@ -209,13 +213,31 @@
                 context.restore();
                 context.drawImage(video, 0, 0);
 
-                document.getElementById("canvas").style.transform = "rotateY(180deg)";
-                document.getElementById("canvas").style.webkitTransform = "rotateY(180deg)";
-                document.getElementById("canvas").style.mozTransform = "rotateY(180deg)";
+                // document.getElementById("canvas").style.transform = "rotateY(180deg)";
+                // document.getElementById("canvas").style.webkitTransform = "rotateY(180deg)";
+                // document.getElementById("canvas").style.mozTransform = "rotateY(180deg)";
 
-                imageLoader.value="";
+                document.getElementById("imageLoader").value="";
+
             }
             var image = document.querySelector('canvas');
+
+            //stickers
+            function addSticker(id){
+                var sticker = new Image();
+                var image = document.querySelector('canvas');
+                sticker.src = "./img/stickers/"+id+".png";
+                if (canvas.width > 0) {
+                    //document.getElementById("errdiv").innerHTML = "";
+                    context = canvas.getContext('2d');
+                    context.drawImage(sticker,0,0,video.clientWidth, video.clientHeight);
+                    image.src = canvas.toDataURL('image/png');
+                    //document.getElementById("canvdiv").innerHTML = "<img src="+image.src+">";
+                }
+                else{
+                    document.getElementById("errdiv").innerHTML = "You need to add/take a picture first.";
+                }
+            }
 
             //filters
             var filterControls = document.querySelectorAll('input[type=range]');
@@ -238,7 +260,7 @@
                         canvas.height = video.clientHeight;
                         context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
                     };
-                    encodeURIComponent(JSON.stringify(img.src));
+                    //encodeURIComponent(JSON.stringify(img.src));
                     img.src = event.target.result;
                 };
                 reader.readAsDataURL(e.target.files[0]);
@@ -270,6 +292,7 @@
                 };
                 xhr.send(JSON.stringify(json))
             });
+
         </script>
 
         <!-- .hero foot-->
