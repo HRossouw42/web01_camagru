@@ -121,24 +121,25 @@
                     </div>
                 </div>
                 </div>
-
             </div>
-            <button class="btn1" onclick="snap();">Take Picture</button>
-            <a id="download" download="image.png"><button style="margin-left:75px" class="btn1" type="button" onClick="download()">Download</button></a>
+            <button class="button" onclick="snap();">Take Picture</button>
+            <a class="" id="download" download="image.png"><button class="button" type="button" onClick="download()">Download</button></a>
+            <input id="add_gal" type="button" name="addgal" class="button" value="Add to gallery"><br>
+            <input  class="button filters" type="file" id="imageLoader" name="imageLoader"/> <br>
+
+        </section>
+        <figure class="has-background-grey-lighter">
             <div class="container filterdiv">
                 <img src='./img/stickers/sticker1.png' id='sticker1' width='30%' onclick='addSticker(id)'>
                 <img src='./img/stickers/sticker2.png' id='sticker2' width='30%' onclick='addSticker(id)'>
-                <img src='./img/stickers/sticker3.png' id='sticker3' width='30%' onclick='addSticker(id)'>
+                <img src='./img/stickers/sticker3.png' id='sticker3' width='28%' onclick='addSticker(id)'>
             </div>
+        </figure>
+    </section>
 
-        </section>
         <!-- Camera non-ajax-->
         <div style="width:200px; margin:auto">
             <div style="position:relative; top:10%; display:flex; flex-direction:column">
-<!--                <video class="webcamma" autoplay="true" id="video"></video><br>-->
-<!--                <button class="btn1" style="margin-top:10px; flex:1; width:100%" onclick="snap();">Take Picture</button><br>-->
-<!--                <canvas class="webcamma" id="canvas" ></canvas>-->
-                <input  class="filters" style="width:100%; color:white; font-family:'K2D'; margin-top:10px" type="file" id="imageLoader" name="imageLoader"/><br>
 
             </div>
             <div> <!-- filters -->
@@ -173,7 +174,7 @@
 <!--                </form>-->
             </div>
 
-            <input style="position:absolute; right:10%; bottom:10%"id="add_gal" type="button" name="addgal" style="margin-left:52.5px" class="btn1" value="Add to gallery">
+
             <img id="testimg" src="">
         </div>
 
@@ -185,8 +186,10 @@
             var video = document.getElementById('video');
             var imageLoader = document.getElementById('imageLoader');
 
+            //imageLoader function handles canvas save states
             imageLoader.addEventListener('change', handleImage, false);
 
+            //HTML camera access & setup
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
                 navigator.mozGetUserMedia || navigator.oGetUserMedia || navigator.msGetUserMedia;
             if (navigator.getUserMedia){
@@ -213,6 +216,7 @@
                 context.restore();
                 context.drawImage(video, 0, 0);
 
+                // rotate canvas on snap button use
                 // document.getElementById("canvas").style.transform = "rotateY(180deg)";
                 // document.getElementById("canvas").style.webkitTransform = "rotateY(180deg)";
                 // document.getElementById("canvas").style.mozTransform = "rotateY(180deg)";
@@ -227,7 +231,7 @@
                 var sticker = new Image();
                 var image = document.querySelector('canvas');
                 sticker.src = "./img/stickers/"+id+".png";
-                if (canvas.width > 0) {
+                if (canvas.width > 300) {
                     //document.getElementById("errdiv").innerHTML = "";
                     context = canvas.getContext('2d');
                     context.drawImage(sticker,0,0,video.clientWidth, video.clientHeight);
