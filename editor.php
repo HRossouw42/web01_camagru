@@ -36,7 +36,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-<!--    <link rel="stylesheet" href="styles/debug.css">-->
+    <link rel="stylesheet" href="styles/debug.css">
     <link rel="stylesheet" href="styles/helpers.css">
     <style>
         .center {
@@ -54,6 +54,10 @@
             background-color: dimgrey;
             color: white;
             font-size: smaller;
+        }
+
+        .webcamma{
+            transform: rotateY(180deg);
         }
 
     </style>
@@ -130,8 +134,8 @@
         </section>
         <figure class="has-background-grey-lighter">
             <div class="container filterdiv">
-                <img src='./img/stickers/sticker1.png' id='sticker1' width='30%' onclick='addSticker(id)'>
-                <img src='./img/stickers/sticker2.png' id='sticker2' width='30%' onclick='addSticker(id)'>
+                <img src='./img/stickers/sticker1.png' id='sticker1' width='38%' onclick='addSticker(id)'>
+                <img src='./img/stickers/sticker2.png' id='sticker2' width='32%' onclick='addSticker(id)'>
                 <img src='./img/stickers/sticker3.png' id='sticker3' width='28%' onclick='addSticker(id)'>
             </div>
         </figure>
