@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
     session_start();
     include("functions/functions.php");
@@ -7,8 +6,9 @@
     include('db.php');
 
     echo $_SESSION ['customer_email'];
-
     ?>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -59,7 +59,7 @@
             <div class="columns is-mobile is-marginless heading has-text-weight-bold">
                 <div class="column left">
                     <a href="index.php" class="navbar-item has-text-black is-active"> Home</a>
-                    <p class="navbar-item has-text-white"> Gallery</p>
+                    <a href="gallery.php" class="navbar-item has-text-white"> Gallery</a>
                 </div>
                 <div class="column center">
                     <?php

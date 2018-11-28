@@ -33,7 +33,7 @@ if (!$conn) {
 $sql = "CREATE TABLE IF NOT EXISTS $tbl_cust (
 	`customer_id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 	`customer_ip` VARCHAR(255) NOT NULL,
-	`customer_name` TEXT NOT NULL,
+	`username` TEXT NOT NULL,
 	`customer_email` VARCHAR(255) NOT NULL,
     `customer_pass` VARCHAR(100) NOT NULL,
     `customer_image` TEXT NOT NULL

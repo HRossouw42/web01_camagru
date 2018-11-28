@@ -55,7 +55,7 @@ include("includes/db.php")
             <div class="columns is-mobile is-marginless heading has-text-weight-bold">
                 <div class="column left">
                     <a href="index.php" class="navbar-item has-text-white"> Home</a>
-                    <p class="navbar-item has-text-white"> Gallery</p>
+                    <a href="gallery.php" class="navbar-item has-text-white"> Gallery</a>
                 </div>
                 <div class="column center">
                     <?php
@@ -95,7 +95,7 @@ include("includes/db.php")
     <!--Form-->
         <form action="register.php" method="post" enctype="multipart/form-data">
         <div class="field">
-            <label class="label">Name</label>
+            <label class="label">Username</label>
             <div class="control has-icons-left">
                 <input class="input" type="text" name="c_name" placeholder="e.g Alex Smith" value="<?php echo @$_SESSION['name'];?>" required>
                 <span class="icon is-small is-left">
@@ -183,7 +183,7 @@ include("includes/db.php")
 
         move_uploaded_file($c_image_tmp, "customer/customer_images/$c_image");
 
-        $insert_c = "insert into customers (customer_ip, customer_name, customer_email, customer_pass, customer_image) 
+        $insert_c = "insert into customers (customer_ip, username, customer_email, customer_pass, customer_image) 
           values ('$ip', '$c_name', '$c_email', '$c_pass', '$c_image')";
 
         $run_c = mysqli_query($con, $insert_c);
