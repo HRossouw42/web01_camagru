@@ -6,24 +6,27 @@
  * Time: 16:11
  */
 
-include("header.php");
-$headers = getallheaders();
-if ($headers["Content-type"] == "application/json") {
-    $stuff = json_decode(file_get_contents("php://input"), true);
-    var_dump($stuff);
-}
+session_start();
+include("functions/functions.php");
+include('config.php');
+include("includes/db.php");
+include('db.php');
+
 $fields = array(
     "image",
     "username"
 );
+
 $table = array(
     "name"      => "images",
     "fields"   => $fields
 );
+
 $values = array(
     toQuote($stuff["pic"]),
-    toQuote($_SESSION["customer_email"])
+    toQuote($_SESSION["username"])
 );
+
 $db->insertRecord(
     array(
         "table"     => $table,
