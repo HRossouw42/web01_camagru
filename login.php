@@ -97,6 +97,15 @@
         </div>
         <form action="login.php" method="post">
         <div class="field">
+            <label class="label">Username</label>
+            <div class="control has-icons-left">
+                <input class="input" type="text" name="user" placeholder="e.g. alexcoolkid69" required>
+                <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+            </span>
+            </div>
+        </div>
+        <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left">
                 <input class="input" type="email" name="email" placeholder="e.g. alexsmith@gmail.com" required>
@@ -135,8 +144,9 @@
             if(isset($_POST['login'])){
                 $c_email = $_POST['email'];
                 $c_pass = $_POST['pass'];
+                $c_name = $_POST['user'];
 
-                $sel_c = "select * from customers where customer_pass ='$c_pass' AND customer_email='$c_email'";
+                $sel_c = "select * from customers where customer_pass ='$c_pass' AND customer_email='$c_email' AND username='$c_name'";
 
                 $run_c = mysqli_query($con, $sel_c);
 
@@ -145,6 +155,7 @@
                 if($check_customer>0){
 
                     $_SESSION['customer_email']=$c_email;
+                    $_SESSION['username']=$c_name;
 
                     echo "<script>alert('Login Successful!')</script>";
                     echo "<script>window.open('myaccount.php','_self')</script>";

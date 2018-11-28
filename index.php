@@ -6,6 +6,7 @@
     include('db.php');
 
     echo $_SESSION ['customer_email'];
+    echo $_SESSION ['username'];
     ?>
 
 <!DOCTYPE html>
