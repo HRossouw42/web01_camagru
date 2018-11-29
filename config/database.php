@@ -1,4 +1,12 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: hrossouw
+ * Date: 2018/11/29
+ * Time: 15:40
+ */
+
+
 class Db
 {
     private $servername ;
@@ -8,7 +16,6 @@ class Db
     private $sconn		;
     private $dbconn		;
     private static $gcount;
-
     function __construct($database)
     {
         $this->servername = $database["servername"];
@@ -34,7 +41,6 @@ class Db
             echo "Connection failed: " . $e->getMessage()."<br>";
         }
     }
-
     function createTABLE($table)
     {
         try
@@ -59,12 +65,10 @@ class Db
         }
 
     }
-
     function getDBConn()
     {
         return ($this->dbconn);
     }
-
     function runStatement($pdo,$statement)
     {
         try
@@ -87,19 +91,16 @@ class Db
         $this->sconn	= null;
         $this->dbconn	= null;
     }
-
     function gallerycount()
     {
         return(Self::$gcount++);
     }
-
     function returnRecord($statement)
     {
         $something = $this->runStatement($this->dbconn, $statement);
 
         return($something->fetchAll());
     }
-
     function insertRecord($record)
     {
         $count 		= 0;
@@ -126,11 +127,10 @@ class Db
         $statement 	= $statement.");";
         $this->runStatement($this->dbconn, $statement);
     }
-
-    function appendRecord($bla){
+    function verifyUser($bla){
         $username = toQuote($bla["username"]);
         $token = $bla["token"];
-        $statement = "SELECT token FROM customers WHERE username = $username";
+        $statement = "SELECT token FROM users WHERE username = $username";
         $out = $this->returnRecord($statement);
         if ($out[0]["token"] == $token){
             $statement = "UPDATE users SET verified=1 WHERE username = $username";
@@ -138,3 +138,4 @@ class Db
         }
     }
 }
+?>
