@@ -1,12 +1,12 @@
 <?php
     session_start();
-    include ("install.php");
+    //include ("install.php");
     include("./config/setup.php");
     //include("functions/functions.php");
     //include('config.php');
     //include("includes/db.php");
     //include('db.php');
-    include("config/setup.php");
+    //include("config/setup.php");
 
     echo $_SESSION ['customer_email'];
     echo $_SESSION ['username'];
