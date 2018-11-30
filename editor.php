@@ -4,6 +4,7 @@
     include('config.php');
     include("includes/db.php");
     include('db.php');
+    include("./config/setup.php");
 
     //loading stickers from file
     $stuff = json_decode(file_get_contents("php://input"), true);

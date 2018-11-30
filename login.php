@@ -4,6 +4,7 @@
     include("includes/db.php");
     include('db.php');
     include("functions/functions.php");
+    include("./config/setup.php");
 ?>
 
 <!DOCTYPE html>
@@ -169,6 +170,7 @@
                 $ip = getIp();
             }
         ?>
+
     </section>
 
     <!-- .hero foot-->

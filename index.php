@@ -2,7 +2,7 @@
     session_start();
     //include ("install.php");
     include("./config/setup.php");
-    //include("functions/functions.php");
+    include("functions/functions.php");
     //include('config.php');
     //include("includes/db.php");
     //include('db.php');

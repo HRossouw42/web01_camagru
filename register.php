@@ -1,7 +1,8 @@
 <?php
 session_start();
 include("functions/functions.php");
-include("includes/db.php")
+include("includes/db.php");
+include("./config/setup.php");
 ?>
 
 <!DOCTYPE html>
@@ -127,7 +128,6 @@ include("includes/db.php")
 
             <div class="field">
                 <label class="label">User Image</label>
-                </span>
                 </div>
             <div class="file field">
                 <label class="file-label">
@@ -174,17 +174,16 @@ include("includes/db.php")
 <?php
     if(isset($_POST['register'])){
 
-        $ip = getIp();
         $c_name = $_POST['c_name'];
         $c_email = $_POST['c_email'];
         $c_pass = $_POST['c_pass'];
-        $c_image = $_FILES['c_image']['name'];
-        $c_image_tmp = $_FILES['c_image']['tmp_name'];
+        //$c_image = $_FILES['c_image']['name'];
+        //$c_image_tmp = $_FILES['c_image']['tmp_name'];
 
-        move_uploaded_file($c_image_tmp, "customer/customer_images/$c_image");
+        //move_uploaded_file($c_image_tmp, "customer/customer_images/$c_image");
 
-        $insert_c = "insert into customers (customer_ip, username, customer_email, customer_pass, customer_image) 
-          values ('$ip', '$c_name', '$c_email', '$c_pass', '$c_image')";
+        $insert_c = "insert into customers (username, customer_email, customer_pass) 
+          values ('$c_name', '$c_email', '$c_pass')";
 
         $run_c = mysqli_query($con, $insert_c);
 

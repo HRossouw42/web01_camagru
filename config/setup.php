@@ -22,7 +22,7 @@
         "username VARCHAR(100) not NULL",
         "`customer_pass` VARCHAR(255) not NULL",
         "customer_email VARCHAR(50) not NULL",
-        "token VARCHAR(255) not NULL",
+        "token VARCHAR(255) not NULL DEFAULT '0'",
         "verified TINYINT(1) NOT NULL DEFAULT '0'",
         "notifications TINYINT(1) NOT NULL DEFAULT '1'"
     );
