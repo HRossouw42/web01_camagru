@@ -11,6 +11,9 @@ include("functions/functions.php");
 include('config.php');
 include("includes/db.php");
 include('db.php');
+include("./config/setup.php");
+
+$stuff = json_decode(file_get_contents("php://input"), true);
 
 $fields = array(
     "image",
@@ -33,3 +36,4 @@ $db->insertRecord(
         "values"    => $values
     )
 );
+?>

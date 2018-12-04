@@ -189,6 +189,7 @@ include("./config/setup.php");
 
         if ($run_c){
             $_SESSION['customer_email']=$c_email;
+            $_SESSION['username']=$c_name;
             echo "<script>alert('Registration Successful!')</script>";
             echo "<script>window.open('myaccount.php','_self')</script>";
         }

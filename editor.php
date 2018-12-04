@@ -25,6 +25,7 @@
     $im = imagecreatefrompng('./bot.png');
     imagecopyresampled($im, $sticker, 0, 0, 0, 0, 640, 480, 640, 480);
     imagepng($im, $_SESSION["customer_email"]."new.png");
+    imagepng($im, $_SESSION["username"]."new.png");
 
 ?>
 
@@ -140,6 +141,14 @@
                 <img src='./img/stickers/sticker3.png' id='sticker3' width='28%' onclick='addSticker(id)'>
             </div>
         </figure>
+
+        <figure class="has-background-grey-lighter">
+            <div class="container ">
+                <img src=''>
+                <img src=''>
+                <img src=''>
+            </div>
+        </figure>
     </section>
 
         <!-- Camera non-ajax-->
@@ -248,16 +257,16 @@
                 }
             }
 
-            //filters
-            var filterControls = document.querySelectorAll('input[type=range]');
-            function applyFilter() {
-                var computedFilters = '';
-                filterControls.forEach(function(item, index) {
-                    computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ')';
-                });
-                image.style.filter = computedFilters;
-                canvas.style.filter = computedFilters;
-            }
+            // //filters
+            // var filterControls = document.querySelectorAll('input[type=range]');
+            // function applyFilter() {
+            //     var computedFilters = '';
+            //     filterControls.forEach(function(item, index) {
+            //         computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ')';
+            //     });
+            //     image.style.filter = computedFilters;
+            //     canvas.style.filter = computedFilters;
+            // }
 
             //saving the image (WIP)
             function handleImage(e){
@@ -301,6 +310,7 @@
                 };
                 xhr.send(JSON.stringify(json))
             });
+
 
         </script>
 
