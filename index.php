@@ -212,6 +212,15 @@
                 </div>
             </div>
         </div>
+        <?php
+        $out2 = $db->returnRecord("SELECT * FROM images");
+        //            print_r($out2);
+        $i = 0;
+        while ($out2[$i]){
+            echo "<img src=".$out2[$i]["image"].">";
+            $i++;
+        }
+        ?>
     </section>
 
     <!-- .hero foot-->

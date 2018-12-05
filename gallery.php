@@ -4,6 +4,8 @@
     include('config.php');
     include("includes/db.php");
     include('db.php');
+    include("./config/setup.php");
+    echo "hello";
     ?>
 
 
@@ -87,7 +89,18 @@
     </section>
 
     <!--.section-->
+
+
     <section class="section has-background-light">
+        <?php
+            $out2 = $db->returnRecord("SELECT * FROM images");
+//            print_r($out2);
+            $i = 0;
+            while ($out2[$i]){
+                echo "<img src=".$out2[$i]["image"].">";
+                $i++;
+            }
+        ?>
 
     </section>
 
