@@ -6,7 +6,6 @@
     //include('config.php');
     //include("includes/db.php");
     //include('db.php');
-    //include("config/setup.php");
 
     echo $_SESSION ['customer_email'];
     echo $_SESSION ['username'];
@@ -93,127 +92,30 @@
     </section>
 
     <!--.section-->
-    <section class="section has-background-light">
-        <!--Every container is a row of photos-->
-        <div class="container">
-            <div class="columns is-variable is-1">
-                <div class="column">
-                    <div class="notification is-primary" >
-                        <article class="media">
-                            <figure class="media-left">
-                                <figure class="image card is-128x128">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                                </figure>
-                            </figure>
-                            <div class="media-content">
-                                <div class="content">
-                                    <h1 class="title    is-size-4">Title!</h1>
-                                    <p class="is-primary">Doggo Pic</p>
-                                </div>
-                            </div>
-                        </article>
-
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="notification is-info">
-                        <article class="media">
-                            <figure class="media-left">
-                                <figure class="image card is-128x128">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                                </figure>
-                            </figure>
-                            </figure>
-                            <div class="media-content">
-                                <div class="content">
-                                    <h1 class="title    is-size-4">Title!</h1>
-                                    <p class="is-primary">Doggo Pic</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="notification is-warning">
-                        <article class="media">
-                            <figure class="media-left">
-                                <figure class="image card is-128x128">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                                </figure>
-                            </figure>
-                            </figure>
-                            <div class="media-content">
-                                <div class="content">
-                                    <h1 class="title    is-size-4">Title!</h1>
-                                    <p class="is-primary">Doggo Pic</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Next row of photos-->
-        <div class="container">
-            <div class="columns is-variable is-1">
-                <div class="column">
-                    <div class="notification is-primary" >
-                        <article class="media">
-                            <figure class="media-left">
-                                <figure class="image card is-128x128">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                                </figure>
-                            </figure>
-                            <div class="media-content">
-                                <div class="content">
-                                    <h1 class="title    is-size-4">Title!</h1>
-                                    <p class="is-primary">Doggo Pic</p>
-                                </div>
-                            </div>
-                        </article>
-
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="notification is-info">
-                        <article class="media">
-                            <figure class="media-left">
-                                <figure class="image card is-128x128">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                                </figure>
-                            </figure>
-                            </figure>
-                            <div class="media-content">
-                                <div class="content">
-                                    <h1 class="title    is-size-4">Title!</h1>
-                                    <p class="is-primary">Doggo Pic</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="notification is-warning">
-                        <article class="media">
-                            <figure class="media-left">
-                                <figure class="image card is-128x128">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                                </figure>
-                            </figure>
-                            </figure>
-                            <div class="media-content">
-                                <div class="content">
-                                    <h1 class="title    is-size-4">Title!</h1>
-                                    <p class="is-primary">Doggo Pic</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
+    <section class="hero is-centered">
+    <section>
+        <div class="columns is-large ">
+            <div class="column is-large is-size-1 is-block"></div>
+            <div class="column is-large is-size-1"></div>
         </div>
     </section>
 
+    <section class="has-background-light">
+        <?php
+            $imagelimit = 5;
+            $out2 = $db->returnRecord("SELECT * FROM images");
+            //            print_r($out2);
+            echo "<div class='columns is-centered is-multiline'>";
+            $i = 0;
+            while ($out2[$i]){
+                echo "<div class='columns is-large'> <img src=".$out2[$i]["image"]."></div>";
+                $i++;
+            }
+            echo "</div>";
+
+        ?>
+    </section>
+    </section>
     <!-- .hero foot-->
     <section class="hero-foot has-background-grey">
         <div class="hero-body">
