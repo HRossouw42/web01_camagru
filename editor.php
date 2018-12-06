@@ -121,8 +121,8 @@
         <section class="hero-center">
             <div class="container field-body">
                 <div class="columns">
-                <div class="column is-half"><video class="webcamma" id="video"><video></div>
-                    <div class="column is-half" id="canvdiv"><canvas class="canvas" id="canvas" >Please use Chrome!</canvas></div>
+                <div class="column is-half"><video class="webcamma" id="video" width="400px" height="300px"><video></div>
+                    <div class="column is-half" id="canvdiv"><canvas class="canvas" id="canvas">Please use Chrome!</canvas></div>
 
                     </div>
                 </div>
@@ -199,6 +199,10 @@
             var context = canvas.getContext('2d');
             var video = document.getElementById('video');
             var imageLoader = document.getElementById('imageLoader');
+            canvas.style.width  = '400px';
+            canvas.style.height = '300px';
+            canvas.width = 400;
+            canvas.height = 300;
 
             //imageLoader function handles canvas save states
             imageLoader.addEventListener('change', handleImage, false);
@@ -220,8 +224,12 @@
 
             //clicking camera on button press
             function snap(){
-                canvas.width = video.clientWidth;
-                canvas.height = video.clientHeight;
+                //canvas.width = video.clientWidth;
+                //canvas.height = video.clientHeight;
+                canvas.width = 400;
+                canvas.height = 300;
+                canvas.style.width  = '400px';
+                canvas.style.height = '300px';
 
                 //save canvas
                 context.translate(canvas.width, 0);

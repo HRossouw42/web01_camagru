@@ -100,7 +100,7 @@
         </div>
     </section>
 
-    <section class="has-background-light">
+    <section class="is-large has-background-light">
         <?php
             $imagelimit = 5;
             $out2 = $db->returnRecord("SELECT * FROM images");
