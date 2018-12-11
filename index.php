@@ -103,17 +103,66 @@
     <section class="is-large has-background-light">
         <?php
             $imagelimit = 5;
-            $out2 = $db->returnRecord("SELECT * FROM images");
+            $out2 = $db->returnRecord("SELECT * FROM images ORDER BY `date` DESC");
             //            print_r($out2);
             echo "<div class='columns is-centered is-multiline'>";
             $i = 0;
             while ($out2[$i]){
-                echo "<div class='columns is-large'> <img src=".$out2[$i]["image"]."></div>";
+                echo "<div class='column is-large'> <img src=".$out2[$i]["image"]."></div>";
                 $i++;
             }
             echo "</div>";
 
+    $i=0;
+    while ($out2[$i])
+    {
+        echo"<div class='container'>";
+                echo"<div class='columns is-variable is-1'>";
+                    echo"<div class='column'>";
+                        echo"<div class='notification is-primary' >";
+                            echo"<article class='media'>";
+                                echo"<figure class='media-left'>";
+                                    echo"<figure class='image card is-128x128'>";
+                                        echo"<img src=".$out2[$i]["image"].">";
+                                    echo"</figure>";
+                                echo"</figure>";
+                                echo"<div class='media-content'>";
+                                    echo"<div class='content'>";
+                                        echo"<h1 class='title is-size-4'>Title!</h1>";
+                                        echo"<p class='is-primary'>Doggo Pic</p>";
+                                    echo"</div>";
+                                echo"</div>";
+                            echo"</article>";
+                        echo"</div>";
+                    echo"</div>";
+                echo"</div>";
+            echo"</div>";
+            $i++;
+    }
         ?>
+
+        <div class="container">
+            <div class="columns is-variable is-1">
+                <div class="column">
+                    <div class="notification is-primary" >
+                        <article class="media">
+                            <figure class="media-left">
+                                <figure class="image card is-128x128">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                </figure>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <h1 class="title    is-size-4">Title!</h1>
+                                    <p class="is-primary">Doggo Pic</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
     </section>
     <!-- .hero foot-->

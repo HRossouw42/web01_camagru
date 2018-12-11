@@ -91,7 +91,7 @@
     <section class="hero">
     <section class="section has-background-light">
         <?php
-        $out2 = $db->returnRecord("SELECT * FROM images");
+        $out2 = $db->returnRecord("SELECT * FROM images ORDER BY `date` DESC");
         //            print_r($out2);
         $i = 0;
         while ($out2[$i]){
