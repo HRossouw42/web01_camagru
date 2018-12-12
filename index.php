@@ -130,6 +130,7 @@
                                     echo"<div class='content'>";
                                         echo"<h1 class='title is-size-4'>Title!</h1>";
                                         echo"<p class='is-primary'>Doggo Pic</p>";
+                                            echo"<a class='button'>Comment</a>";
                                     echo"</div>";
                                 echo"</div>";
                             echo"</article>";
@@ -147,7 +148,7 @@
                     <div class="notification is-primary" >
                         <article class="media">
                             <figure class="media-left">
-                                <figure class="image card is-128x128">
+                                <figure class="image card">
                                     <img src="https://bulma.io/images/placeholders/128x128.png">
                                 </figure>
                             </figure>
@@ -155,6 +156,7 @@
                                 <div class="content">
                                     <h1 class="title    is-size-4">Title!</h1>
                                     <p class="is-primary">Doggo Pic</p>
+                                    <a class="button">Comment</a>
                                 </div>
                             </div>
                         </article>
