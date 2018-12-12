@@ -104,14 +104,19 @@
         <?php
             $imagelimit = 5;
             $out2 = $db->returnRecord("SELECT * FROM images ORDER BY `date` DESC");
-            //            print_r($out2);
-            echo "<div class='columns is-centered is-multiline'>";
-            $i = 0;
-            while ($out2[$i]){
-                echo "<div class='column is-large'> <img src=".$out2[$i]["image"]."></div>";
-                $i++;
-            }
-            echo "</div>";
+            $total = count($out2);
+
+            //print_r($total);
+//            if(isset($_GET["page"])){
+//                $page = $_GET["page"];
+//                $i = ($_GET["page"] - 1 )* $imagelimit;
+//            }
+//            else{
+//                $i = 0;
+//                $page = 1;
+//            }
+//            $pages = ceil($total / $imagelimit);
+
 
     $i=0;
     while ($out2[$i])
@@ -121,9 +126,10 @@
                     echo"<div class='column'>";
                         echo"<div class='notification is-primary' >";
                             echo"<article class='media'>";
-                                echo"<figure class='media-left'>";
+                                echo"<figure class='media-content is-128x128'>";
                                     echo"<figure class='image card'>";
-                                        echo"<img src=".$out2[$i]["image"].">";
+                                        echo"<a class='username' href='image.php?imageID=".$out2[$i]["imageID"]."'</a>";
+                                            echo"<img src=".$out2[$i]["image"].">";
                                     echo"</figure>";
                                 echo"</figure>";
                                 echo"<div class='media-content'>";
