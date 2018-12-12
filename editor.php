@@ -236,7 +236,7 @@
                 context.scale(-1, 1);
                 context.save();
                 context.restore();
-                context.drawImage(video, 0, 0);
+                context.drawImage(video,0,0,640,480,0,0,canvas.width,canvas.height);
 
                 // rotate canvas on snap button use
                 // document.getElementById("canvas").style.transform = "rotateY(180deg)";

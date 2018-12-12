@@ -122,7 +122,7 @@
                         echo"<div class='notification is-primary' >";
                             echo"<article class='media'>";
                                 echo"<figure class='media-left'>";
-                                    echo"<figure class='image card is-128x128'>";
+                                    echo"<figure class='image card'>";
                                         echo"<img src=".$out2[$i]["image"].">";
                                     echo"</figure>";
                                 echo"</figure>";
