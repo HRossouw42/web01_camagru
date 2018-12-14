@@ -94,7 +94,43 @@ include("./config/setup.php");
             </div>
         </div>
     <!--Form-->
-        <form action="register.php" method="post" enctype="multipart/form-data">
+        <script type="text/javascript">
+            function checkPassword(str)
+            {
+                //6 characters, at least one number, one lowercase and one uppercase letter
+                var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
+                return re.test(str);
+            }
+
+            function checkForm(form)
+            {
+                if(form.c_name.value == "") {
+                    alert("Username cannot be blank!");
+                    form.c_name.focus();
+                    return false;
+                }
+                re = /^\w+$/;
+                if(!re.test(form.c_name.value)) {
+                    alert("Username must contain only letters and numbers!");
+                    form.c_name.focus();
+                    return false;
+                }
+                if(form.c_pass.value != "" && form.c_pass.value == form.c_pass2.value) {
+                    if(!checkPassword(form.c_pass.value)) {
+                        alert("The password you have entered is not valid! Must be 6 characters, with at least 1 number, one lowercase character and one uppercase character");
+                        form.c_pass.focus();
+                        return false;
+                    }
+                } else {
+                    alert("Please check that you've entered and confirmed the same password!");
+                    form.c_pass.focus();
+                    return false;
+                }
+                return true;
+            }
+        </script>
+
+        <form action="register.php" method="post" enctype="multipart/form-data" onsubmit="return checkForm(this);">
         <div class="field">
             <label class="label">Username</label>
             <div class="control has-icons-left">
@@ -118,12 +154,22 @@ include("./config/setup.php");
         <div class="field">
             <label class="label">Password</label>
             <div class="control has-icons-left">
-                <input class="input" type="password" name="c_pass" placeholder="battery horse staple" value="<?php echo @$_SESSION['password'];?>" required>
+                <input class="input" type="password" name="c_pass" placeholder="1batteryHorsestaple" value="<?php echo @$_SESSION['password'];?>" required>
                 <span class="icon is-small is-left">
                 <i class="fas fa-password"></i>
                 </span>
             </div>
         </div>
+
+        <div class="field">
+            <label class="label">Confirm Password</label>
+            <div class="control has-icons-left">
+                <input class="input" type="password" name="c_pass2" placeholder="1batteryHorsestaple" value="<?php echo @$_SESSION['password'];?>" required>
+                <span class="icon is-small is-left">
+            <i class="fas fa-password"></i>
+            </span>
+            </div>
+        </div>    
 
 
             <div class="field">
@@ -181,6 +227,7 @@ include("./config/setup.php");
         //$c_image_tmp = $_FILES['c_image']['tmp_name'];
 
         //move_uploaded_file($c_image_tmp, "customer/customer_images/$c_image");
+
 
         $insert_c = "insert into customers (username, customer_email, customer_pass) 
           values ('$c_name', '$c_email', '$c_pass')";

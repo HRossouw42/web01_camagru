@@ -6,9 +6,6 @@
     //include('config.php');
     //include("includes/db.php");
     //include('db.php');
-
-    echo $_SESSION ['customer_email'];
-    echo $_SESSION ['username'];
     ?>
 
 <!DOCTYPE html>
@@ -122,22 +119,17 @@
     while ($out2[$i])
     {
         echo"<div class='container'>";
-                echo"<div class='columns is-variable is-1'>";
-                    echo"<div class='column'>";
+                echo"<div class='columns is-variable'>";
+                    echo"<div class='column is-four-fifths'>";
                         echo"<div class='notification is-primary' >";
-                            echo"<article class='media'>";
-                                echo"<figure class='media-content is-128x128'>";
-                                    echo"<figure class='image card'>";
+                            echo"<article class='media is-centered'>";
+                                echo"<figure class='media-content'>";
+                                    echo"<figure class='image card is-4by3'>";
                                         echo"<a class='username' href='image.php?imageID=".$out2[$i]["imageID"]."'</a>";
                                             echo"<img src=".$out2[$i]["image"].">";
                                     echo"</figure>";
                                 echo"</figure>";
                                 echo"<div class='media-content'>";
-                                    echo"<div class='content'>";
-                                        echo"<h1 class='title is-size-4'>Title!</h1>";
-                                        echo"<p class='is-primary'>Doggo Pic</p>";
-                                            echo"<a class='button'>Comment</a>";
-                                    echo"</div>";
                                 echo"</div>";
                             echo"</article>";
                         echo"</div>";
