@@ -143,8 +143,7 @@ include("./config/setup.php");
         $c_email = $_POST['email'];
         $c_pass = $_POST['pass'];
         $c_name = $_POST['user'];
-        $sel_c = "select * from customers where customer_pass ='$c_pass' AND customer_email='$c_email' AND username='$c_name' AND verified='1
-'";
+        $sel_c = "select * from customers where customer_pass ='$c_pass' AND customer_email='$c_email' AND username='$c_name' AND verified='1'";
         $run_c = mysqli_query($con, $sel_c);
         $check_customer = mysqli_num_rows($run_c);
         if($check_customer>0){

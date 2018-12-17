@@ -235,11 +235,40 @@ include("./config/setup.php");
         $run_c = mysqli_query($con, $insert_c);
 
         if ($run_c){
+
+        $to = $c_email;
+        $subject = "Signup & Verification";
+        $hash = "123";
+        $message = '
+        
+        Thanks for signing up!
+        
+        See your login details below:
+        
+        *******************************
+        Username:   '.$c_name.'
+        Email:      '.$c_email.'
+        Password:   '.$c_pass.'
+        *******************************
+        
+        Please follow this link to activate your account:
+        http://127.0.0.1:8080/PHP/web01_camagru/verify.php?email='.$c_email.'&hash='.$hash.'
+        ';
+
+        $headers = 'FROM: noreply@camagru.com' . "\r\n";
+        mail($to, $subject, $message);
+
+        echo "<script>alert('Thanks! Please see your email at to login!')</script>";
+        }
+
+        //$run_c = mysqli_query($con, $insert_c);
+
+        /*if ($run_c){
             $_SESSION['customer_email']=$c_email;
             $_SESSION['username']=$c_name;
             echo "<script>alert('Registration Successful!')</script>";
             echo "<script>window.open('myaccount.php','_self')</script>";
-        }
+        }*/
 
     }
 ?>
