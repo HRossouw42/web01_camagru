@@ -143,7 +143,8 @@ include("./config/setup.php");
         $c_email = $_POST['email'];
         $c_pass = $_POST['pass'];
         $c_name = $_POST['user'];
-        $sel_c = "select * from customers where customer_pass ='$c_pass' AND customer_email='$c_email' AND username='$c_name'";
+        $sel_c = "select * from customers where customer_pass ='$c_pass' AND customer_email='$c_email' AND username='$c_name' AND verified='1
+'";
         $run_c = mysqli_query($con, $sel_c);
         $check_customer = mysqli_num_rows($run_c);
         if($check_customer>0){
@@ -153,7 +154,7 @@ include("./config/setup.php");
             echo "<script>window.open('myaccount.php','_self')</script>";
         }
         else {
-            echo "<script>alert('Password or email is incorrect!')</script>";
+            echo "<script>alert('Cannot login, please check that you\'ve verified and that your email or password is correct!')</script>";
             exit();
         }
         $ip = getIp();
