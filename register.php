@@ -223,14 +223,15 @@ include("./config/setup.php");
         $c_name = $_POST['c_name'];
         $c_email = $_POST['c_email'];
         $c_pass = $_POST['c_pass'];
+        $token = "1023OPDda938ABDsdEsd12903";
         //$c_image = $_FILES['c_image']['name'];
         //$c_image_tmp = $_FILES['c_image']['tmp_name'];
 
         //move_uploaded_file($c_image_tmp, "customer/customer_images/$c_image");
 
 
-        $insert_c = "insert into customers (username, customer_email, customer_pass) 
-          values ('$c_name', '$c_email', '$c_pass')";
+        $insert_c = "insert into customers (username, customer_email, customer_pass, token) 
+          values ('$c_name', '$c_email', '$c_pass', '$token')";
 
         $run_c = mysqli_query($con, $insert_c);
 
@@ -238,7 +239,7 @@ include("./config/setup.php");
 
         $to = $c_email;
         $subject = "Signup & Verification";
-        $hash = "123";
+        $token = "1023OPDda938ABDsdEsd12903";
         $message = '
         
         Thanks for signing up!
@@ -252,13 +253,14 @@ include("./config/setup.php");
         *******************************
         
         Please follow this link to activate your account:
-        http://127.0.0.1:8080/PHP/web01_camagru/verify.php?email='.$c_email.'&hash='.$hash.'
+        http://127.0.0.1:8080/PHP/web01_camagru/verify.php?email='.$c_email.'&token='.$token.'
         ';
 
         $headers = 'FROM: noreply@camagru.com' . "\r\n";
         mail($to, $subject, $message);
 
-        echo "<script>alert('Thanks! Please see your email at to login!')</script>";
+        echo "<script>alert('Thanks! Please see your email to login!')</script>";
+        echo "<script>window.open('login.php','_self')</script>";
         }
 
         //$run_c = mysqli_query($con, $insert_c);

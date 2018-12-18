@@ -16,6 +16,7 @@ class Db
     private $sconn		;
     private $dbconn		;
     private static $gcount;
+
     function __construct($database)
     {
         $this->servername = $database["servername"];
@@ -41,6 +42,7 @@ class Db
             echo "Connection failed: " . $e->getMessage()."<br>";
         }
     }
+
     function createTABLE($table)
     {
         try
@@ -65,10 +67,12 @@ class Db
         }
 
     }
+
     function getDBConn()
     {
         return ($this->dbconn);
     }
+
     function runStatement($pdo,$statement)
     {
         try
@@ -91,16 +95,19 @@ class Db
         $this->sconn	= null;
         $this->dbconn	= null;
     }
+
     function gallerycount()
     {
         return(Self::$gcount++);
     }
+
     function returnRecord($statement)
     {
         $something = $this->runStatement($this->dbconn, $statement);
 
         return($something->fetchAll());
     }
+
     function insertRecord($record)
     {
         $count 		= 0;
@@ -127,13 +134,14 @@ class Db
         $statement 	= $statement.");";
         $this->runStatement($this->dbconn, $statement);
     }
+
     function verifyUser($bla){
-        $username = toQuote($bla["username"]);
+        $email = toQuote($bla["email"]);
         $token = $bla["token"];
-        $statement = "SELECT token FROM users WHERE username = $username";
+        $statement = "SELECT token FROM customers WHERE customer_email = $email";
         $out = $this->returnRecord($statement);
         if ($out[0]["token"] == $token){
-            $statement = "UPDATE users SET verified=1 WHERE username = $username";
+            $statement = "UPDATE customers SET verified=1 WHERE customer_email = $email";
             $this->runStatement($this->dbconn, $statement);
         }
     }
