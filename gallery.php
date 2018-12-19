@@ -23,6 +23,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: auto;
         }
 
         .hero {
@@ -35,6 +36,7 @@
             color: white;
             font-size: smaller;
         }
+
 
     </style>
 </head>
@@ -122,13 +124,13 @@
 
             echo "<div class='galdiv' style='top:120%'>";
                 while ($i < $imagelimit*$page && $out2[$i]){
-                echo "<div class='imagediv'><img src=".$out2[$i]["image"]."></div>";
+                echo "<div class='card-header is-centered center'><img src=".$out2[$i]["image"]."></div>";
                 echo "<br><form method='post' action=''><input type='submit' name='".$out2[$i]["imageID"]."' class='btn1 button' value='Delete Image'></form>";
                 $i++;
                 }
-                echo "<br><div class='imagediv' style='bottom:0%'>";
+                echo "<br><div class= 'pagination-list' style='bottom:0%'>";
                     for ($x = 1; $x <= $pages; $x++){
-                    echo "<a href='gallery.php?page=$x'>$x</a>"."\t";
+                    echo "<a href='gallery.php?page=$x' class='pagination-next'>$x</a>"."\t";
                     }
                     echo "</div>";
                 echo "</div>";

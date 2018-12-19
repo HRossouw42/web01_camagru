@@ -26,6 +26,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: auto;
         }
 
         .hero {
@@ -121,7 +122,7 @@
     while ($out2[$i])
     {
         echo"<div class='container'>";
-                echo"<div class='columns is-variable'>";
+                echo"<div class='columns is-variable center'>";
                     echo"<div class='column is-four-fifths'>";
                         echo"<div class='notification is-primary' >";
                             echo"<article class='media is-centered'>";
