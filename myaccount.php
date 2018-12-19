@@ -1,10 +1,46 @@
 <?php
     session_start();
 
-    include("functions/functions.php");
     include('config.php');
     include("includes/db.php");
     include('db.php');
+    include("functions/functions.php");
+    include("./config/setup.php");
+
+    $i = 0;
+    if($_POST["btn"]){
+        $i = 1;
+    }
+    if($_POST["btn2"]){
+        $select = "SELECT * FROM CUSTOMERS WHERE username =".toQuote($_SESSION['username']);
+        $out = $db->returnRecord($select);
+        if($_POST["curruser"] === $_SESSION["username"]){
+            if($_POST["newuser"] != "" && isUnique("username",$_POST["newuser"])){
+                $statement = "UPDATE customers SET username = ".toQuote($_POST['newuser'])." WHERE username = ".toQuote($_SESSION["username"]);
+                $statement .= "; UPDATE images SET username = ".toQuote($_POST['newuser'])." WHERE username = ".toQuote($_SESSION["username"]);
+                $statement .= "; UPDATE comments SET username = ".toQuote($_POST['newuser'])." WHERE username = ".toQuote($_SESSION["username"]);
+                $db->runStatement($db->getDBConn(),$statement);
+                $_SESSION["username"] = $_POST["newuser"];
+            }
+        }
+        if(hash("whirlpool",$_POST["currpass"]) == $out[0]["password"]){
+            $newpass = hash("whirlpool", $_POST["newpass"]);
+            $statement = "UPDATE customers SET `customer_pass` = ".toQuote($newpass)." WHERE `customer_pass` = ".toQuote(hash("whirlpool",$_POST["currpass"]))." AND username = ".toQuote($_SESSION["username"]);
+            $db->runStatement($db->getDBConn(),$statement);
+        }
+        if($_POST["curremail"] == $out[0]["email"]){
+            $statement = "UPDATE customers SET customer_email = ".toQuote($_POST['newemail'])." WHERE customer_email = ".toQuote($_POST["curremail"]);
+            $db->runStatement($db->getDBConn(),$statement);
+        }
+        if($_POST["notifications"]){
+            if($_POST["notifications"] == "noteon")
+                $onoff = 1;
+            else
+                $onoff = 0;
+            $statement = "UPDATE customers SET notifications = ".toQuote($onoff)." WHERE username = ".toQuote($_SESSION["username"]);
+            $db->runStatement($db->getDBConn(),$statement);
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -104,17 +140,43 @@
 
         </div>
     </div>
+    <script type="text/javascript">
+        function checkPassword(str)
+        {
+            //6 characters, at least one number, one lowercase and one uppercase letter
+            var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
+            return re.test(str);
+        }
 
-    <div class="field is-grouped">
-        <div class="control">
-            <button class="button is-primary">Submit</button>
-        </div>
-        <div class="control">
-            <a class="button" href="index.php">Cancel</a>
-        </div>
-    </div>
+        function checkForm(form)
+        {
+            if(form.newuser.value == "") {
+                alert("Username cannot be blank!");
+                form.c_name.focus();
+                return false;
+            }
+            re = /^\w+$/;
+            if(!re.test(form.newuser.value)) {
+                alert("Username must contain only letters and numbers!");
+                form.c_name.focus();
+                return false;
+            }
+            if(form.currpass.value != "" && form.currpass.value != form.newpass.value) {
+                if(!checkPassword(form.currpass.value)) {
+                    alert("The password you have entered is not valid! Must be 6 characters, with at least 1 number, one lowercase character and one uppercase character");
+                    form.currpass.focus();
+                    return false;
+                }
+            } else {
+                alert("Please check that you've entered and confirmed the same password!");
+                form.currpass.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
     <div class="centerdiv">
-        <form style="align-text:left" action="" method="post" style="top:50%">
+        <form style="align-text:left" action="" method="post" style="top:50%" onsubmit="return checkForm(this);">
             <h4 style="margin-top:0">Change settings:</h4>
             <?php
             if($i == 0){
@@ -122,15 +184,16 @@
                 echo "<label><input type='checkbox' name='passcheck' value='passcheck'>Change Password</label><br>";
                 echo "<label><input type='checkbox' name='emailcheck' value='emailcheck'>Change Email Address</label><br>";
                 echo "<label><input type='checkbox' name='notecheck' value='notecheck'>Change Notification Settings</label><br>";
-                echo "<input class='btn1' type='submit' name='btn' value='Submit'><br>";
+                echo "<input class='btn1 button is-primary' type='submit' name='btn' value='Submit'><br>";
+                echo "<input class='button' href='myaccount.php' type='submit' name='cancel' value='Cancel'><br>";
             }
             if($i >= 1 && $_POST["usercheck"]==usercheck){
                 echo "<input type='text' name='curruser' placeholder='Enter Current Username'><br>";
                 echo "<input type='text' name='newuser' placeholder='Enter New Username'><br>";
             }
             if($i >= 1 && $_POST["passcheck"]==passcheck){
-                echo "<input title='Password requires one lower case letter, one upper case letter, one digit, 8+ characters, and no spaces.' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$'' type='password'  name='currpass' placeholder='Enter Current Password'><br>";
-                echo "<input title='Password requires one lower case letter, one upper case letter, one digit, 8+ characters, and no spaces.' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$' type='password'  name='newpass' placeholder='Enter New Password'><br>";
+                echo "<input title='Please use a password with at least 6 characters, at least one number, one lowercase and one uppercase letter.' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$'' type='password'  name='currpass' placeholder='Enter Current Password'><br>";
+                echo "<input title='Please use a password with at least 6 characters, at least one number, one lowercase and one uppercase letter.' pattern='^^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$' type='password'  name='newpass' placeholder='Enter New Password'><br>";
             }
             if($i >= 1 && $_POST["emailcheck"]==emailcheck){
                 echo "<input type='email' name='curremail' placeholder='Enter Current Email Address'><br>";
@@ -141,7 +204,8 @@
                 echo "<label><input type='radio' name='notifications' value='noteoff'>Don't Receive Email Updates</label><br>";
             }
             if($i == 1){
-                echo "<input class='btn1' type='submit' name='btn2' value='Submit'><br>";
+                echo "<input class='btn1 button is-primary' type='submit' name='btn2' value='Submit' onsubmit='return checkForm(this);'><br>";
+                echo "<input class='button' href='myaccount.php' type='submit' name='cancel' value='Cancel'><br>";
             }
             ?>
         </form>

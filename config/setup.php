@@ -68,7 +68,7 @@
     //unique registrations
 	function isUnique($param, $val){
         global $db;
-        $statement = "SELECT * FROM USERS WHERE ".$param." = ".toQuote($val).";";
+        $statement = "SELECT * FROM CUSTOMERS WHERE ".$param." = ".toQuote($val).";";
         $count = $db->returnRecord($statement);
         return (!count($count));
     }
