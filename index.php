@@ -101,25 +101,24 @@
     </section>
 
     <section class="is-large has-background-light">
-        <?php
-            $imagelimit = 5;
-            $out2 = $db->returnRecord("SELECT * FROM images ORDER BY `date` DESC");
-            $total = count($out2);
+    <?php
+        $imagelimit = 5;
+        $out2 = $db->returnRecord("SELECT * FROM images ORDER BY `date` DESC");
+        $total = count($out2);
 
-            //print_r($total);
-//            if(isset($_GET["page"])){
-//                $page = $_GET["page"];
-//                $i = ($_GET["page"] - 1 )* $imagelimit;
-//            }
-//            else{
-//                $i = 0;
-//                $page = 1;
-//            }
-//            $pages = ceil($total / $imagelimit);
+        //print_r($total);
+        if(isset($_GET["page"])){
+            $page = $_GET["page"];
+            $i = ($_GET["page"] - 1 )* $imagelimit;
+        }
+        else{
+            $i = 0;
+            $page = 1;
+        }
+        $pages = ceil($total / $imagelimit);
 
-
-    $i=0;
-    while ($out2[$i])
+    print_r($imagelimit);
+    while ($i < $imagelimit*$page && $out2[$i])
     {
         echo"<div class='container'>";
                 echo"<div class='columns is-variable center'>";
@@ -141,30 +140,13 @@
             echo"</div>";
             $i++;
     }
+    echo "<br><div class= 'pagination-list' style='bottom:0%'>";
+    for ($x = 1; $x <= $pages; $x++){
+        echo "<a href='index.php?page=$x' class='pagination-next'>$x</a>"."\t";
+    }
+    echo "</div>";
         ?>
 
-        <div class="container">
-            <div class="columns is-variable is-1">
-                <div class="column">
-                    <div class="notification is-primary" >
-                        <article class="media">
-                            <figure class="media-left">
-                                <figure class="image card">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                                </figure>
-                            </figure>
-                            <div class="media-content">
-                                <div class="content">
-                                    <h1 class="title    is-size-4">Title!</h1>
-                                    <p class="is-primary">Doggo Pic</p>
-                                    <a class="button">Comment</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </section>
     </section>
