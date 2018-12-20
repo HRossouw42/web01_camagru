@@ -117,7 +117,7 @@ include("./config/setup.php");
                 }
                 if(form.c_pass.value != "" && form.c_pass.value == form.c_pass2.value) {
                     if(!checkPassword(form.c_pass.value)) {
-                        alert("The password you have entered is not valid! Must be 6 characters, with at least 1 number, one lowercase character and one uppercase character");
+                        alert("The password you have entered is not valid! Must be 6 characters, with at least 1 number, one lowercase character and one uppercase character. No special characters allowed!");
                         form.c_pass.focus();
                         return false;
                     }

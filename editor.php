@@ -57,6 +57,10 @@
             transform: rotateY(180deg);
         }
 
+        hr.style1{
+            border-top: 1px solid #8c8b8b;
+        }
+
     </style>
 
 
@@ -136,12 +140,35 @@
                 <img src='./img/stickers/sticker3.png' id='sticker3' width='28%' onclick='addSticker(id)'>
             </div>
         </figure>
-
+        <br><hr class="style1">
         <figure class="has-background-grey-lighter">
-            <div class="container ">
-                <img src=''>
-                <img src=''>
-                <img src=''>
+            <div class="container" style="border: #0a0a0a">
+                <?php
+                $imagelimit = 3;
+                $out2 = $db->returnRecord("SELECT * FROM images WHERE username = ".toQuote($_SESSION["username"]));
+                $total = count($out2);
+                if(isset($_GET["page"])){
+                    $page = $_GET["page"];
+                    $i = ($_GET["page"] - 1 )* $imagelimit;
+                }
+                else{
+                    $i = 0;
+                    $page = 1;
+                }
+                $pages = ceil($total / $imagelimit);
+
+                echo "<div class='galdiv' style='top:120%'>";
+                while ($i < $imagelimit*$page && $out2[$i]){
+                    echo "<img src=".$out2[$i]["image"].">";
+                    $i++;
+                }
+                echo "<br><div class= 'pagination-list' style='bottom:0%'>";
+                for ($x = 1; $x <= $pages; $x++){
+                    echo "<a href='editor.php?page=$x' class='pagination-next'>$x</a>"."\t";
+                }
+                echo "</div>";
+                echo "</div>";
+                ?>
             </div>
         </figure>
     </section>
@@ -255,6 +282,7 @@
 
             //adding to gallery (WIP)
             document.getElementById("add_gal").addEventListener("click", function() {
+                if (canvas.width > 300) {
                 var img = new Image();
                 img.src = canvas.toDataURL();
                 var json = {
@@ -268,7 +296,10 @@
                         console.log(xhr.responseText);
                     }
                 };
-                xhr.send(JSON.stringify(json))
+                xhr.send(JSON.stringify(json))}
+                else{
+                    document.getElementById("errdiv").innerHTML = "You need to add/take a picture first.";
+                }
             });
 
 
