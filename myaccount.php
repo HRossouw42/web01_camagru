@@ -179,7 +179,7 @@
         <form style="align-text:left" action="" method="post" style="top:50%" onsubmit="return checkForm(this);">
             <h4 style="margin-top:0">Change settings:</h4>
             <?php
-            if($i == 0){
+            if($i == 0 && $_SESSION["username"] !=""){
                 echo "<label><input type='checkbox' name='usercheck' value='usercheck'>Change Username</label><br>";
                 echo "<label><input type='checkbox' name='passcheck' value='passcheck'>Change Password</label><br>";
                 echo "<label><input type='checkbox' name='emailcheck' value='emailcheck'>Change Email Address</label><br>";

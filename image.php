@@ -8,9 +8,11 @@
 
     session_start();
     //include ("install.php");
-    include("./config/setup.php");
     include("functions/functions.php");
+    include('config.php');
     include("includes/db.php");
+    include('db.php');
+    include("./config/setup.php");
 
 ?>
 
@@ -114,17 +116,21 @@ if ($_POST["comm-btn"]){
         $pattern = array("#;#", "#=#", "#\"#");
         $replace = array("%1", "%2", "%3");
         $noinjectcomm = preg_replace($pattern, $replace, $_POST["commbox"]);
+
         $statement = "INSERT INTO comments (imageID, username, comment) VALUES (";
         $statement .= toQuote($_GET["imageID"]).", ".toQuote($_SESSION["username"]).", ".toQuote($noinjectcomm).")";
         $db->runStatement($db->getDBConn(),$statement);
+
         $_POST["commbox"] = "";
+
         $statement = "SELECT * FROM images WHERE imageID = ".toQuote($_GET["imageID"]);
         $out = $db->returnRecord($statement);
         $user = $out[0]["username"];
         $statement = "SELECT * FROM customers WHERE username = ".toQuote($user);
         $out = $db->returnRecord($statement);
+
         // email notification of comments
-       $message = $_SESSION["username"]." commented on your image. Go to 127.0.0.1:8080/PHP/web01_camagru/image.PHP?imageID=".$_GET["imageID"]." to check it out!";
+       $message = $_SESSION["username"]." has left you a comment! Head on to 127.0.0.1:8080/PHP/web01_camagru/image.PHP?imageID=".$_GET["imageID"]." to check it out!";
        if ($out[0]["notifications"]){
            mail($out[0]["customer_email"], "New Camagru Comment", $message);
        }
