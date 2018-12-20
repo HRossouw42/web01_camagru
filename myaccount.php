@@ -23,12 +23,12 @@
                 $_SESSION["username"] = $_POST["newuser"];
             }
         }
-        if(hash("whirlpool",$_POST["currpass"]) == $out[0]["password"]){
+        if(hash("whirlpool",$_POST["currpass"]) == $out[0]["customer_pass"]){
             $newpass = hash("whirlpool", $_POST["newpass"]);
             $statement = "UPDATE customers SET `customer_pass` = ".toQuote($newpass)." WHERE `customer_pass` = ".toQuote(hash("whirlpool",$_POST["currpass"]))." AND username = ".toQuote($_SESSION["username"]);
             $db->runStatement($db->getDBConn(),$statement);
         }
-        if($_POST["curremail"] == $out[0]["email"]){
+        if($_POST["curremail"] == $out[0]["customer_email"]){
             $statement = "UPDATE customers SET customer_email = ".toQuote($_POST['newemail'])." WHERE customer_email = ".toQuote($_POST["curremail"]);
             $db->runStatement($db->getDBConn(),$statement);
         }

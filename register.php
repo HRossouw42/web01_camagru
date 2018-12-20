@@ -223,7 +223,8 @@ include("./config/setup.php");
         $c_name = $_POST['c_name'];
         $c_email = $_POST['c_email'];
         $c_pass = $_POST['c_pass'];
-        $token = "1023OPDda938ABDsdEsd12903";
+        $hashpass = hash("whirlpool", $c_pass);
+        $token = substr("1Ax".str_shuffle($hashpass), 0, 10);
         //$c_image = $_FILES['c_image']['name'];
         //$c_image_tmp = $_FILES['c_image']['tmp_name'];
 
@@ -231,7 +232,7 @@ include("./config/setup.php");
 
 
         $insert_c = "insert into customers (username, customer_email, customer_pass, token) 
-          values ('$c_name', '$c_email', '$c_pass', '$token')";
+          values ('$c_name', '$c_email', '$hashpass', '$token')";
 
         $run_c = mysqli_query($con, $insert_c);
 
@@ -239,7 +240,6 @@ include("./config/setup.php");
 
         $to = $c_email;
         $subject = "Signup & Verification";
-        $token = "1023OPDda938ABDsdEsd12903";
         $message = '
         
         Thanks for signing up!

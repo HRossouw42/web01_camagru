@@ -123,12 +123,11 @@ if ($_POST["comm-btn"]){
         $user = $out[0]["username"];
         $statement = "SELECT * FROM customers WHERE username = ".toQuote($user);
         $out = $db->returnRecord($statement);
-
-        //email notification of comments
-//        $message = $_SESSION["username"]." commented on your image. Go to 127.0.0.1:8080/camagru/image.PHP?imageID=".$_GET["imageID"]." to check it out!";
-//        if ($out[0]["notifications"]){
-//            mail($out[0]["email"], "New Camagru Comment", $message);
-//        }
+        // email notification of comments
+       $message = $_SESSION["username"]." commented on your image. Go to 127.0.0.1:8080/PHP/web01_camagru/image.PHP?imageID=".$_GET["imageID"]." to check it out!";
+       if ($out[0]["notifications"]){
+           mail($out[0]["customer_email"], "New Camagru Comment", $message);
+       }
     }
 }
 $imarray = $db->returnRecord("SELECT * FROM images WHERE imageID = ".toQuote($_GET["imageID"]));

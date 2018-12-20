@@ -22,11 +22,6 @@
             $src = "./images/sticker3.png";
             break;
 }
-    $im = imagecreatefrompng('./bot.png');
-    imagecopyresampled($im, $sticker, 0, 0, 0, 0, 640, 480, 640, 480);
-    imagepng($im, $_SESSION["customer_email"]."new.png");
-    imagepng($im, $_SESSION["username"]."new.png");
-
 ?>
 
 <!DOCTYPE html>
@@ -156,39 +151,6 @@
             <div style="position:relative; top:10%; display:flex; flex-direction:column">
 
             </div>
-            <div> <!-- filters -->
-<!--                <form method="post" style="position:relative; margin-top:17.5%;" class="filters">-->
-<!--                    <div class="filtereth">Blur-->
-<!--                        <input min="0" max="20" value="0" step="1" oninput="applyFilter()" data-filter="blur" data-scale="px" type="range"></div>-->
-<!---->
-<!--                    <div class="filtereth">Brightness-->
-<!--                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="brightness" data-scale="%" type="range"></div>-->
-<!---->
-<!--                    <div class="filtereth">Contrast-->
-<!--                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="contrast" data-scale="%" type="range"></div>-->
-<!---->
-<!--                    <div class="filtereth">Grayscale-->
-<!--                        <input min="1" max="100" value="1" step="1" oninput="applyFilter()" data-filter="grayscale" data-scale="%" type="range"></div>-->
-<!---->
-<!--                    <div class="filtereth">Hue Rotate-->
-<!--                        <input min="0" max="360" value="0" step="1" oninput="applyFilter()" data-filter="hue-rotate" data-scale="deg" type="range"></div>-->
-<!---->
-<!--                    <div class="filtereth">Invert-->
-<!--                        <input min="0" max="100" value="0" step="1" oninput="applyFilter()" data-filter="invert" data-scale="%" type="range"></div>-->
-<!---->
-<!--                    <div class="filtereth">Opacity-->
-<!--                        <input min="0" max="100" value="100" step="1" oninput="applyFilter()" data-filter="opacity" data-scale="%" type="range"></div>-->
-<!---->
-<!--                    <div class="filtereth">Saturate-->
-<!--                        <input min="0" max="200" value="100" step="1" oninput="applyFilter()" data-filter="saturate" data-scale="%" type="range"></div>-->
-<!---->
-<!--                    <div class="filtereth">Sepia-->
-<!--                        <input min="0" max="100" value="0" step="1" oninput="applyFilter()" data-filter="sepia" data-scale="%" type="range"></div>-->
-<!--                    -->
-<!--                </form>-->
-            </div>
-
-
             <img id="testimg" src="">
         </div>
 
@@ -201,7 +163,7 @@
             var imageLoader = document.getElementById('imageLoader');
             canvas.style.width  = '400px';
             canvas.style.height = '300px';
-            canvas.width = 400;
+            canvas.width = 200;
             canvas.height = 300;
 
             //imageLoader function handles canvas save states
@@ -265,16 +227,6 @@
                 }
             }
 
-            // //filters
-            // var filterControls = document.querySelectorAll('input[type=range]');
-            // function applyFilter() {
-            //     var computedFilters = '';
-            //     filterControls.forEach(function(item, index) {
-            //         computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ')';
-            //     });
-            //     image.style.filter = computedFilters;
-            //     canvas.style.filter = computedFilters;
-            // }
 
             //saving the image (WIP)
             function handleImage(e){
