@@ -33,3 +33,6 @@ Bulma CSS framework
 - clone files to Apache web server's htdocs directory
 - create database called **camagru** on phpmyadmin
 - open http://localhost:8080/ (or wherever it's running)
+
+### Other WTC Students
+**Use this implementation at your own peril.**
