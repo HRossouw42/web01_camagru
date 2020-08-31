@@ -31,5 +31,5 @@ Bulma CSS framework
 ## Installation
 - install MAMP, use password of **123456** for the database
 - clone files to Apache web server's htdocs directory
-- create database called **camagru**
+- create database called **camagru** on phpmyadmin
 - open http://localhost:8080/ (or wherever it's running)
