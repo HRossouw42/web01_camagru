@@ -34,5 +34,19 @@ Bulma CSS framework
 - create database called **camagru** on phpmyadmin
 - open http://localhost:8080/ (or wherever it's running)
 
+# Example
+
+1st year project examples incoming 😅:  
+
+Main Page - you can't post if you haven't registed, but still see public posts
+![Main Page](https://github.com/HRossouw42/web01_camagru/blob/master/image_mainPage.jpg)
+
+Capure Page - take photos with your frontfacing camera, add filters
+![Capture Page](https://github.com/HRossouw42/web01_camagru/blob/master/image_capture.jpg)
+
+Shown when clicking on a post - can comment/like if logged in
+![Comments Page](https://github.com/HRossouw42/web01_camagru/blob/master/image_comments.jpg)
+
+
 ### Other WTC Students
-**Use this implementation at your own peril.**
+**Use this implementation at your own peril. Definitly a tough project for your first time touching web, but you'll learn a lot!**
